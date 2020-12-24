@@ -42,7 +42,7 @@ namespace Jabuticaba
             foreach(var cpfInvalido in cpfsInvalidos)
             {
                 if(long.Parse(cpf) == cpfInvalido)
-                    throw new CpfInvalidoException();
+                    throw new CpfInvalidoException("CPF com números repetidos não são válidos");
             }
         }
 
