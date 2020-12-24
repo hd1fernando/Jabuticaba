@@ -31,12 +31,18 @@ namespace JabuticabaTests
             acao.Should().Throw<CpfInvalidoException>();
         }
 
-                [Fact]
-        public void DeveLancarExececaoQuandoCpfContemApenasDigitosRepetidos()
-        {
-            Action acao = () => { Cpf cpf = "111.111.111-11"; };
+        [Theory]
+        [InlineData("000.000.000.00")]
+        [InlineData("111.111.111-11")]
+        [InlineData("222.222.222-22")]
+        [InlineData("999.999.999.99")]
 
-            acao.Should().Throw<CpfInvalidoException>();
+        public void DeveLancarExececaoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
+        {
+            Action acao = () => { Cpf cpf = cpfRepetido; };
+
+            acao.Should().Throw<CpfInvalidoException>()
+                .WithMessage("CPF com números repetidos não são válidos");
         }
 
         [Fact]
