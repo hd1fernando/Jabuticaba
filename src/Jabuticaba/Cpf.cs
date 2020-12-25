@@ -1,32 +1,43 @@
 ﻿
 using System;
+using System.Runtime.CompilerServices;
+using System.Text;
 using Jabuticaba.Excecoes;
 
 namespace Jabuticaba
 {
     public struct Cpf
     {
-        private readonly string _cpf;
+        private string _cpf;
         private Cpf(string cpf)
-           => _cpf = cpf;
-
-        public static implicit operator Cpf(string cpf)
-            => Validar(cpf);
-
-        private static Cpf Validar(string cpf)
         {
-            cpf = RemoverMascara(cpf);
-            ValidarSeSomenteDigito(cpf);
-            ValidarTamanho(cpf);
-            ValidarDigitosRepetidos(cpf);
-            ValidarPrimeroDigito(cpf);
-            ValidarSegundoDigito(cpf);
-            return new Cpf(cpf);
+            _cpf = cpf;
+            Validar(cpf);
         }
 
-        private static void ValidarDigitosRepetidos(string cpf)
+        public static implicit operator Cpf(string cpf)
+            => new Cpf(cpf);
+
+        private void Validar(string cpf)
         {
-            long cpfLong = long.Parse(cpf);
+            ValidarSeNulo();
+            RemoverMascara();
+            ValidarSeSomenteDigito();
+            ValidarTamanho();
+            ValidarDigitosRepetidos();
+            ValidarPrimeroDigito();
+            ValidarSegundoDigito();
+        }
+
+        private void ValidarSeNulo()
+        {
+            if (_cpf is null)
+                throw new NullReferenceException("O CPF não pode ser nulo");
+        }
+
+        private void ValidarDigitosRepetidos()
+        {
+            long cpfLong = long.Parse(_cpf);
 
             if (cpfLong == 11111111111 ||
                 cpfLong == 22222222222 ||
@@ -41,19 +52,19 @@ namespace Jabuticaba
                 throw new CpfInvalidoException("CPF com números repetidos não são válidos");
         }
 
-        private static void ValidarSegundoDigito(string cpf)
+        private void ValidarSegundoDigito()
         {
             int resultado =
-                (int)char.GetNumericValue(cpf[0]) * 11 +
-                (int)char.GetNumericValue(cpf[1]) * 10 +
-                (int)char.GetNumericValue(cpf[2]) * 9 +
-                (int)char.GetNumericValue(cpf[3]) * 8 +
-                (int)char.GetNumericValue(cpf[4]) * 7 +
-                (int)char.GetNumericValue(cpf[5]) * 6 +
-                (int)char.GetNumericValue(cpf[6]) * 5 +
-                (int)char.GetNumericValue(cpf[7]) * 4 +
-                (int)char.GetNumericValue(cpf[8]) * 3 +
-                (int)char.GetNumericValue(cpf[9]) * 2;
+                ObterDigito(0) * 11 +
+                ObterDigito(1) * 10 +
+                ObterDigito(2) * 9 +
+                ObterDigito(3) * 8 +
+                ObterDigito(4) * 7 +
+                ObterDigito(5) * 6 +
+                ObterDigito(6) * 5 +
+                ObterDigito(7) * 4 +
+                ObterDigito(8) * 3 +
+                ObterDigito(9) * 2;
 
 
             int restoDaDivisao = (resultado * 10) % 11;
@@ -61,48 +72,81 @@ namespace Jabuticaba
             if (restoDaDivisao == 10)
                 restoDaDivisao = 0;
 
-            if ((int)char.GetNumericValue(cpf[10]) != restoDaDivisao)
-                throw new CpfInvalidoException($"O CPF {cpf} é inválido.");
+            if (ObterDigito(10) != restoDaDivisao)
+                throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
         }
 
-        private static void ValidarPrimeroDigito(string cpf)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private int ObterDigito(int posicao)
+            => _cpf[posicao] - 0x30;
+
+        private void ValidarPrimeroDigito()
         {
             int resultado =
-                (int)char.GetNumericValue(cpf[0]) * 10 +
-                (int)char.GetNumericValue(cpf[1]) * 9 +
-                (int)char.GetNumericValue(cpf[2]) * 8 +
-                (int)char.GetNumericValue(cpf[3]) * 7 +
-                (int)char.GetNumericValue(cpf[4]) * 6 +
-                (int)char.GetNumericValue(cpf[5]) * 5 +
-                (int)char.GetNumericValue(cpf[6]) * 4 +
-                (int)char.GetNumericValue(cpf[7]) * 3 +
-                (int)char.GetNumericValue(cpf[8]) * 2;
+                ObterDigito(0) * 10 +
+                ObterDigito(1) * 9 +
+                ObterDigito(2) * 8 +
+                ObterDigito(3) * 7 +
+                ObterDigito(4) * 6 +
+                ObterDigito(5) * 5 +
+                ObterDigito(6) * 4 +
+                ObterDigito(7) * 3 +
+                ObterDigito(8) * 2;
 
             int restoDaDivisao = (resultado * 10) % 11;
 
             if (restoDaDivisao == 10)
                 restoDaDivisao = 0;
 
-            if ((int)char.GetNumericValue(cpf[9]) != restoDaDivisao)
-                throw new CpfInvalidoException($"O CPF {cpf} é inválido.");
+            if (ObterDigito(9) != restoDaDivisao)
+                throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
         }
 
-        private static void ValidarSeSomenteDigito(string cpf)
+        private void ValidarSeSomenteDigito()
         {
-            for (int i = 0; i < cpf.Length; i++)
+            for (int i = 0; i < _cpf.Length; i++)
             {
-                if (cpf[i] < 0x30 || cpf[i] > 0x39)
-                    throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{cpf[i]}' foi encontrado na posição '{i}'. Cpf informado: {cpf}");
+                if (_cpf[i] < 0x30 || _cpf[i] > 0x39)
+                    throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i}'. Cpf informado: {_cpf}");
             }
         }
 
-        private static void ValidarTamanho(string cpf)
+        private void ValidarTamanho()
         {
-            if (cpf.Length is not 11)
-                throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {cpf.Length} dígitos foram informados");
+            if (_cpf.Length is not 11)
+                throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {_cpf.Length} dígitos foram informados");
         }
 
-        private static string RemoverMascara(string cpf)
-            => cpf.Replace("-", "").Replace(".", "");
+        private string RemoverMascara()
+           => _cpf = _cpf.Replace("-", "").Replace(".", "");
+
+        public unsafe void RemoverMascaraUnsafe()
+        {
+            Span<char> caracteres = stackalloc char[2];
+            caracteres[0] = '.';
+            caracteres[1] = '-';
+
+            char* resultado = stackalloc char[_cpf.Length];
+            int contador = 0;
+            foreach (var cpfChar in _cpf)
+            {
+                bool adicionar = true;
+                foreach (var j in caracteres)
+                {
+                    if (j == cpfChar)
+                    {
+                        adicionar = false;
+                        break;
+                    }
+                }
+                if (adicionar)
+                {
+                    resultado[contador] = cpfChar;
+                    contador++;
+                }
+            }
+
+            _cpf = new string(resultado, 0, contador + 1);
+        }
     }
 }
