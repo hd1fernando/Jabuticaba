@@ -119,34 +119,5 @@ namespace Jabuticaba
 
         private string RemoverMascara()
            => _cpf = _cpf.Replace("-", "").Replace(".", "");
-
-        public unsafe void RemoverMascaraUnsafe()
-        {
-            Span<char> caracteres = stackalloc char[2];
-            caracteres[0] = '.';
-            caracteres[1] = '-';
-
-            char* resultado = stackalloc char[_cpf.Length];
-            int contador = 0;
-            foreach (var cpfChar in _cpf)
-            {
-                bool adicionar = true;
-                foreach (var j in caracteres)
-                {
-                    if (j == cpfChar)
-                    {
-                        adicionar = false;
-                        break;
-                    }
-                }
-                if (adicionar)
-                {
-                    resultado[contador] = cpfChar;
-                    contador++;
-                }
-            }
-
-            _cpf = new string(resultado, 0, contador + 1);
-        }
     }
 }
