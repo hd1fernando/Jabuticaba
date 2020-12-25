@@ -15,6 +15,14 @@ namespace JabuticabaTests
         }
 
         [Fact]
+        public void DeveLevantarExecaoCpfVazio()
+        {
+            Action acao = () => { Cpf cpf = null; };
+            acao.Should().Throw<NullReferenceException>()
+                .WithMessage("O CPF não pode ser nulo");
+        }
+
+        [Fact]
         public void DeveLancarExececaoQuandoPrimeiroDigitoEhInvalido()
         {
             Action acao = () => { Cpf cpf = "149.764.610-00"; };
