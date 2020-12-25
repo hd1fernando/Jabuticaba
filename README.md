@@ -20,6 +20,9 @@ GC geração 2 - 0
 GC geração 1 - 0
 GC geração 0 - 45
 ```
+# Detalhes do projeto
+Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com git e [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+
 # Autor
 Fernando Souza Gonçalves
 
