@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Jabuticaba.Excecoes;
 
 namespace Jabuticaba
@@ -9,24 +8,29 @@ namespace Jabuticaba
     public struct Cpf
     {
         private string _cpf;
+
+        [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
         private Cpf(string cpf)
         {
             _cpf = cpf;
-            Validar(cpf);
+            Validar();
         }
 
         public static implicit operator Cpf(string cpf)
             => new Cpf(cpf);
 
-        private void Validar(string cpf)
+        public override string ToString()
+            => _cpf;
+        private void Validar()
         {
+            Span<int> stackCpf = stackalloc int[11];
             ValidarSeNulo();
-            RemoverMascara();
             ValidarSeSomenteDigito();
             ValidarTamanho();
-            ValidarDigitosRepetidos();
-            ValidarPrimeroDigito();
-            ValidarSegundoDigito();
+            RemoverMascara(stackCpf);
+            ValidarDigitosRepetidos(stackCpf);
+            ValidarPrimeroDigito(stackCpf);
+            ValidarSegundoDigito(stackCpf);
         }
 
         private void ValidarSeNulo()
@@ -35,36 +39,30 @@ namespace Jabuticaba
                 throw new NullReferenceException("O CPF não pode ser nulo");
         }
 
-        private void ValidarDigitosRepetidos()
+        private void ValidarDigitosRepetidos(Span<int> cpf)
         {
-            long cpfLong = long.Parse(_cpf);
-
-            if (cpfLong == 11111111111 ||
-                cpfLong == 22222222222 ||
-                cpfLong == 33333333333 ||
-                cpfLong == 44444444444 ||
-                cpfLong == 55555555555 ||
-                cpfLong == 66666666666 ||
-                cpfLong == 77777777777 ||
-                cpfLong == 88888888888 ||
-                cpfLong == 99999999999 ||
-                cpfLong == 00000000000)
-                throw new CpfInvalidoException("CPF com números repetidos não são válidos");
+            for (int i = 1; i < 11; i++)
+            {
+                if (cpf[i] != cpf[0])
+                    return;
+            }
+            throw new CpfInvalidoException("CPF com números repetidos não são válidos");
         }
 
-        private void ValidarSegundoDigito()
+        [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
+        private void ValidarSegundoDigito(Span<int> cpf)
         {
             int resultado =
-                ObterDigito(0) * 11 +
-                ObterDigito(1) * 10 +
-                ObterDigito(2) * 9 +
-                ObterDigito(3) * 8 +
-                ObterDigito(4) * 7 +
-                ObterDigito(5) * 6 +
-                ObterDigito(6) * 5 +
-                ObterDigito(7) * 4 +
-                ObterDigito(8) * 3 +
-                ObterDigito(9) * 2;
+                cpf[0] * 11 +
+                cpf[1] * 10 +
+                cpf[2] * 9 +
+                cpf[3] * 8 +
+                cpf[4] * 7 +
+                cpf[5] * 6 +
+                cpf[6] * 5 +
+                cpf[7] * 4 +
+                cpf[8] * 3 +
+                cpf[9] * 2;
 
 
             int restoDaDivisao = (resultado * 10) % 11;
@@ -72,33 +70,30 @@ namespace Jabuticaba
             if (restoDaDivisao == 10)
                 restoDaDivisao = 0;
 
-            if (ObterDigito(10) != restoDaDivisao)
+            if (cpf[10] != restoDaDivisao)
                 throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int ObterDigito(int posicao)
-            => _cpf[posicao] - 0x30;
-
-        private void ValidarPrimeroDigito()
+        [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
+        private void ValidarPrimeroDigito(Span<int> cpf)
         {
             int resultado =
-                ObterDigito(0) * 10 +
-                ObterDigito(1) * 9 +
-                ObterDigito(2) * 8 +
-                ObterDigito(3) * 7 +
-                ObterDigito(4) * 6 +
-                ObterDigito(5) * 5 +
-                ObterDigito(6) * 4 +
-                ObterDigito(7) * 3 +
-                ObterDigito(8) * 2;
+                cpf[0] * 10 +
+                cpf[1] * 9 +
+                cpf[2] * 8 +
+                cpf[3] * 7 +
+                cpf[4] * 6 +
+                cpf[5] * 5 +
+                cpf[6] * 4 +
+                cpf[7] * 3 +
+                cpf[8] * 2;
 
             int restoDaDivisao = (resultado * 10) % 11;
 
             if (restoDaDivisao == 10)
                 restoDaDivisao = 0;
 
-            if (ObterDigito(9) != restoDaDivisao)
+            if (cpf[9] != restoDaDivisao)
                 throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
         }
 
@@ -106,6 +101,8 @@ namespace Jabuticaba
         {
             for (int i = 0; i < _cpf.Length; i++)
             {
+                if (_cpf[i] == 0x2d || _cpf[i] == 0x2e)
+                    continue;
                 if (_cpf[i] < 0x30 || _cpf[i] > 0x39)
                     throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i}'. Cpf informado: {_cpf}");
             }
@@ -113,40 +110,24 @@ namespace Jabuticaba
 
         private void ValidarTamanho()
         {
-            if (_cpf.Length is not 11)
-                throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {_cpf.Length} dígitos foram informados");
+            int contador = 0;
+            foreach (var c in _cpf)
+            {
+                if (char.IsDigit(c))
+                    contador++;
+            }
+            if (contador is not 11)
+                throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {contador} dígitos foram informados");
         }
 
-        private string RemoverMascara()
-           => _cpf = _cpf.Replace("-", "").Replace(".", "");
-
-        public unsafe void RemoverMascaraUnsafe()
+        private void RemoverMascara(Span<int> nCpf)
         {
-            Span<char> caracteres = stackalloc char[2];
-            caracteres[0] = '.';
-            caracteres[1] = '-';
-
-            char* resultado = stackalloc char[_cpf.Length];
             int contador = 0;
-            foreach (var cpfChar in _cpf)
+            foreach (var cpf in _cpf)
             {
-                bool adicionar = true;
-                foreach (var j in caracteres)
-                {
-                    if (j == cpfChar)
-                    {
-                        adicionar = false;
-                        break;
-                    }
-                }
-                if (adicionar)
-                {
-                    resultado[contador] = cpfChar;
-                    contador++;
-                }
+                if (char.IsDigit(cpf))
+                    nCpf[contador++] = cpf - 0x30;
             }
-
-            _cpf = new string(resultado, 0, contador + 1);
         }
     }
 }

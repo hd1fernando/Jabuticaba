@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using Bogus;
+using Bogus.Extensions.Brazil;
 using FluentAssertions;
 using Jabuticaba;
 using Jabuticaba.Excecoes;
@@ -8,10 +11,22 @@ namespace JabuticabaTests
 {
     public class CpfTest
     {
+
         [Fact]
         public void DeveCriarCpf()
         {
-            Cpf cpf = "529.982.247-25";
+            // Arrange
+            Faker faker;
+            int gerar = 1000;
+            int inc = 0;
+
+            // Act
+            do
+            {
+                inc++;
+                faker = new("pt_BR");
+                Cpf cpf = faker.Person.Cpf();
+            } while (inc < gerar);
         }
 
         [Fact]
@@ -28,7 +43,7 @@ namespace JabuticabaTests
             Action acao = () => { Cpf cpf = "149.764.610-00"; };
 
             acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("O CPF 14976461000 é inválido.");
+                .WithMessage("O CPF 149.764.610-00 é inválido.");
         }
 
         [Fact]
@@ -77,7 +92,7 @@ namespace JabuticabaTests
             Action acao = () => { Cpf cpf = "149.764.610a"; };
 
             acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '9'. Cpf informado: 149764610a");
+                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '11'. Cpf informado: 149.764.610a");
         }
     }
 }
