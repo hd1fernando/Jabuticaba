@@ -29,7 +29,7 @@ namespace Jabuticaba.Benchmark
 
     public static class CpfBenchmark
     {
-        /*
+        /**
         Último resultado alcançado:
         Quantidade de cpfs 1000000
         Tempo execução: 527ms
