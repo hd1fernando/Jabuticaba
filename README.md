@@ -1,5 +1,7 @@
 # Jabuticaba
-![.NET](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=develop)
+![main](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
+![develop](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=develop)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hd1fernando/Jabuticaba/blob/feature/cpf/LICENSE)
 
 # Sobre o projeto
