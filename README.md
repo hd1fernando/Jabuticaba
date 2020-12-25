@@ -49,7 +49,7 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 # Autor
 Fernando Gonçalves
 
-https://www.linkedin.com/in/hd1fernando/
+[<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
 
 
 # Referências:
