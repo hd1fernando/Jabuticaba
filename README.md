@@ -12,7 +12,14 @@ Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar r
 # Como utlizar
 
 # Benchmarck
-
+``` bash
+Cpf:
+Quantidade de cpfs 1000000
+Tempo execução: 590ms
+GC geração 2 - 0
+GC geração 1 - 0
+GC geração 0 - 45
+```
 # Autor
 Fernando Souza Gonçalves
 
