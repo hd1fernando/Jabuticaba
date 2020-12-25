@@ -47,6 +47,7 @@ namespace Jabuticaba
             throw new CpfInvalidoException("CPF com números repetidos não são válidos");
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
         private void ValidarSegundoDigito(Span<int> cpf)
         {
             int resultado =
@@ -71,6 +72,7 @@ namespace Jabuticaba
                 throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
         private void ValidarPrimeroDigito(Span<int> cpf)
         {
             int resultado =
