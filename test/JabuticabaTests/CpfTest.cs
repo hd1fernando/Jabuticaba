@@ -16,14 +16,15 @@ namespace JabuticabaTests
         public void DeveCriarCpf()
         {
             // Arrange
-            Faker faker = new Faker("pt_BR");
-            int gerar = 10000;
+            Faker faker;
+            int gerar = 1000;
             int inc = 0;
 
             // Act
             do
             {
                 inc++;
+                faker = new("pt_BR");
                 Cpf cpf = faker.Person.Cpf();
             } while (inc < gerar);
         }
