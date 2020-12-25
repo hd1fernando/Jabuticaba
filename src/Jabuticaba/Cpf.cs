@@ -26,35 +26,36 @@ namespace Jabuticaba
 
         private static void ValidarDigitosRepetidos(string cpf)
         {
-            long[] cpfsInvalidos = {
-                11111111111,
-                22222222222,
-                33333333333,
-                44444444444,
-                55555555555,
-                66666666666,
-                77777777777,
-                88888888888,
-                99999999999,
-                00000000000
-            };
+            long cpfLong = long.Parse(cpf);
 
-            foreach(var cpfInvalido in cpfsInvalidos)
-            {
-                if(long.Parse(cpf) == cpfInvalido)
-                    throw new CpfInvalidoException("CPF com números repetidos não são válidos");
-            }
+            if (cpfLong == 11111111111 ||
+                cpfLong == 22222222222 ||
+                cpfLong == 33333333333 ||
+                cpfLong == 44444444444 ||
+                cpfLong == 55555555555 ||
+                cpfLong == 66666666666 ||
+                cpfLong == 77777777777 ||
+                cpfLong == 88888888888 ||
+                cpfLong == 99999999999 ||
+                cpfLong == 00000000000)
+                throw new CpfInvalidoException("CPF com números repetidos não são válidos");
         }
 
         private static void ValidarSegundoDigito(string cpf)
         {
-            int multiplicador = 11;
-            int resultado = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                resultado += ((int)char.GetNumericValue(cpf[i]) * multiplicador);
-                multiplicador--;
-            }
+            int resultado =
+                (int)char.GetNumericValue(cpf[0]) * 11 +
+                (int)char.GetNumericValue(cpf[1]) * 10 +
+                (int)char.GetNumericValue(cpf[2]) * 9 +
+                (int)char.GetNumericValue(cpf[3]) * 8 +
+                (int)char.GetNumericValue(cpf[4]) * 7 +
+                (int)char.GetNumericValue(cpf[5]) * 6 +
+                (int)char.GetNumericValue(cpf[6]) * 5 +
+                (int)char.GetNumericValue(cpf[7]) * 4 +
+                (int)char.GetNumericValue(cpf[8]) * 3 +
+                (int)char.GetNumericValue(cpf[9]) * 2;
+
+
             int restoDaDivisao = (resultado * 10) % 11;
 
             if (restoDaDivisao == 10)
@@ -66,13 +67,17 @@ namespace Jabuticaba
 
         private static void ValidarPrimeroDigito(string cpf)
         {
-            int multiplicador = 10;
-            int resultado = 0;
-            for (int i = 0; i < 9; i++)
-            {
-                resultado += ((int)char.GetNumericValue(cpf[i]) * multiplicador);
-                multiplicador--;
-            }
+            int resultado =
+                (int)char.GetNumericValue(cpf[0]) * 10 +
+                (int)char.GetNumericValue(cpf[1]) * 9 +
+                (int)char.GetNumericValue(cpf[2]) * 8 +
+                (int)char.GetNumericValue(cpf[3]) * 7 +
+                (int)char.GetNumericValue(cpf[4]) * 6 +
+                (int)char.GetNumericValue(cpf[5]) * 5 +
+                (int)char.GetNumericValue(cpf[6]) * 4 +
+                (int)char.GetNumericValue(cpf[7]) * 3 +
+                (int)char.GetNumericValue(cpf[8]) * 2;
+
             int restoDaDivisao = (resultado * 10) % 11;
 
             if (restoDaDivisao == 10)
