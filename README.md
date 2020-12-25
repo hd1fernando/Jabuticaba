@@ -20,10 +20,9 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   [Host]     : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
   DefaultJob : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
 
-
-|   Method |     Mean |    Error |   StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------- |---------:|---------:|---------:|------:|-------:|------:|------:|----------:|
-| ObterCpf | 94.66 ns | 1.487 ns | 1.391 ns |  1.00 | 0.0229 |     - |     - |      48 B |
+|   Method |     Mean |    Error |   StdDev | Ratio | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
+| ObterCpf | 74.66 ns | 0.525 ns | 0.465 ns |  1.00 |     - |     - |     - |         - |
 
 // * Legends *
   Mean      : Arithmetic mean of all measurements
@@ -48,7 +47,7 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 
 # Autor
 Fernando Gonçalves
-
+https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 https://www.linkedin.com/in/hd1fernando/
 
 
