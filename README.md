@@ -70,4 +70,5 @@ Fernando Gonçalves
 [dicasdeprogramacao - Algoritmo para Validar CPF](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
 
 [You Tube - Entendendo a Heap e o Garbage Collector em .NET](https://www.youtube.com/watch?v=s5-uC-taIi4)
-[Medium - https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648](https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648)
+
+[Medium - Gerando dados aleatórios para seus testes de unidade](https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648)
