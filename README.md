@@ -42,7 +42,9 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 
 ## Bibliotecas utlizadas
 [XUnit](https://xunit.net/) para criação de testes de automatizado.
+
 [Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
+
 [Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
 
 # Autor
