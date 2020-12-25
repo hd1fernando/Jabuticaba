@@ -13,15 +13,37 @@ Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar r
 
 # Benchmark
 ``` bash
-Cpf:
-Quantidade de cpfs 1000000
-Tempo execução: 590ms
-GC geração 2 - 0
-GC geração 1 - 0
-GC geração 0 - 45
+// * Summary *
+
+BenchmarkDotNet=v0.12.1, OS=ubuntu 20.04
+AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=5.0.101
+  [Host]     : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+  DefaultJob : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+
+
+|   Method |     Mean |   Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------- |---------:|--------:|--------:|------:|-------:|------:|------:|----------:|
+| ObterCpf | 191.2 ns | 1.86 ns | 1.65 ns |  1.00 | 0.0458 |     - |     - |      96 B |
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Ratio     : Mean of the ratio distribution ([Current]/[Baseline])
+  Gen 0     : GC Generation 0 collects per 1000 operations
+  Gen 1     : GC Generation 1 collects per 1000 operations
+  Gen 2     : GC Generation 2 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ns      : 1 Nanosecond (0.000000001 sec)
 ```
 # Detalhes do projeto
 Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com git e [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+
+## Bibliotecas utlizadas
+[XUnit](https://xunit.net/) para criação de testes de automatizado.
+[Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
+[Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
 
 # Autor
 Fernando Souza Gonçalves
@@ -46,3 +68,5 @@ https://www.linkedin.com/in/hd1fernando/
 [elemarjr - Lições de performances aprendidas com Roslyn](https://www.elemarjr.com/pt/archive/licoes-de-performances-aprendidas-com-roslyn-1-objectpool-e-pooledstringbuilder/)
 
 [dicasdeprogramacao - Algoritmo para Validar CPF](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
+
+[You Tube - Entendendo a Heap e o Garbage Collector em .NET](https://www.youtube.com/watch?v=s5-uC-taIi4)
