@@ -13,8 +13,7 @@ Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar r
 
 # Benchmark
 ``` bash
-// * Summary *
-
+// * Legends *
 BenchmarkDotNet=v0.12.1, OS=ubuntu 20.04
 AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=5.0.101
@@ -22,9 +21,9 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   DefaultJob : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
 
 
-|   Method |     Mean |   Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------- |---------:|--------:|--------:|------:|-------:|------:|------:|----------:|
-| ObterCpf | 191.2 ns | 1.86 ns | 1.65 ns |  1.00 | 0.0458 |     - |     - |      96 B |
+|   Method |     Mean |    Error |   StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------- |---------:|---------:|---------:|------:|-------:|------:|------:|----------:|
+| ObterCpf | 94.66 ns | 1.487 ns | 1.391 ns |  1.00 | 0.0229 |     - |     - |      48 B |
 
 // * Legends *
   Mean      : Arithmetic mean of all measurements
@@ -48,7 +47,7 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 [Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
 
 # Autor
-Fernando Souza Gonçalves
+Fernando Gonçalves
 
 https://www.linkedin.com/in/hd1fernando/
 
