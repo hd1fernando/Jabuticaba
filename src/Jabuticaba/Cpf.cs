@@ -117,7 +117,22 @@ namespace Jabuticaba
                 throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {_cpf.Length} dígitos foram informados");
         }
 
-        private string RemoverMascara()
-           => _cpf = _cpf.Replace("-", "").Replace(".", "");
+        private void RemoverMascara()
+        {
+            Span<char> novoCpf = stackalloc char[_cpf.Length];
+            Span<char> mascaras = stackalloc char[2];
+            mascaras[0] = '.';
+            mascaras[1] = '-';
+
+            int contador = 0;
+            foreach (var cpf in _cpf)
+            {
+                if (cpf == mascaras[0] || cpf == mascaras[1])
+                    continue;
+                novoCpf[contador++] = cpf;
+            }
+            ReadOnlySpan<char> nCpf = novoCpf[0..contador];
+            _cpf = new string(nCpf);
+        }
     }
 }
