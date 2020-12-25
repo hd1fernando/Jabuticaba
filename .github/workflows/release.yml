@@ -2,12 +2,10 @@ name: .NET
 
 on:
   push:
-    branches: 
-      - develop
+    branches: [ main ]
   pull_request:
-    branches:
-    - main
-    - develop
+    branches: [ main ]
+
 jobs:
   build:
 
@@ -25,3 +23,5 @@ jobs:
       run: dotnet build --no-restore src/Jabuticaba/
     - name: Test
       run: dotnet test --no-build --verbosity normal test/JabuticabaTests/
+    - name: Publish Nuget Package
+      run: dotnet nuget push  **/*.nupkg --api-key {{ secrets.NUGET_API_KEY }} --source https://www.nuget.org/
