@@ -35,7 +35,7 @@ namespace Jabuticaba.Benchmark
         Tempo execução: 527ms
         GC geração 2 - 0
         GC geração 1 - 0
-        GC geração 0 - 45
+        GC geração 0 - 45,
         */
         public static void ValidarCpf(ulong numeroTentativas)
         {
