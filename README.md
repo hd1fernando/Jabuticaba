@@ -22,7 +22,7 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 
 |   Method |     Mean |    Error |   StdDev | Ratio | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |--------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
-| ObterCpf | 74.66 ns | 0.525 ns | 0.465 ns |  1.00 |     - |     - |     - |         - |
+| ObterCpf | 56.57 ns | 0.372 ns | 0.311 ns |  1.00 |     - |     - |     - |         - |
 
 // * Legends *
   Mean      : Arithmetic mean of all measurements
@@ -70,3 +70,4 @@ Fernando Gonçalves
 [dicasdeprogramacao - Algoritmo para Validar CPF](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
 
 [You Tube - Entendendo a Heap e o Garbage Collector em .NET](https://www.youtube.com/watch?v=s5-uC-taIi4)
+[Medium - https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648](https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648)

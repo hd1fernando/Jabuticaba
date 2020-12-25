@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using Bogus;
+using Bogus.Extensions.Brazil;
 using FluentAssertions;
 using Jabuticaba;
 using Jabuticaba.Excecoes;
@@ -8,10 +11,21 @@ namespace JabuticabaTests
 {
     public class CpfTest
     {
+
         [Fact]
         public void DeveCriarCpf()
         {
-            Cpf cpf = "529.982.247-25";
+            // Arrange
+            Faker faker = new Faker("pt_BR");
+            int gerar = 10000;
+            int inc = 0;
+
+            // Act
+            do
+            {
+                inc++;
+                Cpf cpf = faker.Person.Cpf();
+            } while (inc < gerar);
         }
 
         [Fact]
