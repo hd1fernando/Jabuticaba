@@ -28,7 +28,7 @@ namespace JabuticabaTests
             Action acao = () => { Cpf cpf = "149.764.610-00"; };
 
             acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("O CPF 14976461000 é inválido.");
+                .WithMessage("O CPF 149.764.610-00 é inválido.");
         }
 
         [Fact]
@@ -77,7 +77,7 @@ namespace JabuticabaTests
             Action acao = () => { Cpf cpf = "149.764.610a"; };
 
             acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '9'. Cpf informado: 149764610a");
+                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '11'. Cpf informado: 149.764.610a");
         }
     }
 }
