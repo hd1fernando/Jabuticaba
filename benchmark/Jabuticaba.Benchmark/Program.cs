@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
 
 namespace Jabuticaba.Benchmark
 {
@@ -7,19 +9,33 @@ namespace Jabuticaba.Benchmark
     {
         static void Main(string[] args)
         {
+            #if RELEASE
+                var summary = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
+            #endif
+
             CpfBenchmark.ValidarCpf(numeroTentativas: 1_000_000);
+        }
+    }
+
+    [MemoryDiagnoser]
+    public class CpfBenchmarkDiagnoser
+    {
+        [Benchmark(Baseline = true)]
+        public void ObterCpf()
+        {
+            Cpf cpf = "529.982.247-25";
         }
     }
 
     public static class CpfBenchmark
     {
-        /***
+        /**
         Último resultado alcançado:
         Quantidade de cpfs 1000000
         Tempo execução: 527ms
         GC geração 2 - 0
         GC geração 1 - 0
-        GC geração 0 - 45
+        GC geração 0 - 45,
         */
         public static void ValidarCpf(ulong numeroTentativas)
         {
@@ -41,6 +57,7 @@ namespace Jabuticaba.Benchmark
             Console.WriteLine($"GC geração 2 - {GC.CollectionCount(2) - gcAntesGeracao2}");
             Console.WriteLine($"GC geração 1 - {GC.CollectionCount(1) - gcAntesGeracao1}");
             Console.WriteLine($"GC geração 0 - {GC.CollectionCount(0) - gcAntesGeracao0}");
+            Console.WriteLine(DateTime.Now);
             Console.WriteLine();
         }
     }
