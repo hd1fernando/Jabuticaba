@@ -6,9 +6,12 @@
 Jabuticaba é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
 Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação.
 
+# Tipos implementados
+ CPF
+
 # Como utlizar
 
-
+# Benchmarck
 
 # Autor
 Fernando Souza Gonçalves
