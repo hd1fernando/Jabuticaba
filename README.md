@@ -11,7 +11,7 @@ Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar r
 
 # Como utlizar
 
-# Benchmarck
+# Benchmark
 ``` bash
 Cpf:
 Quantidade de cpfs 1000000
