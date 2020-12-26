@@ -18,11 +18,7 @@ Install-Package jabuticaba
 ```
 #### CLI
 ```bash
-<<<<<<< HEAD
 dotnet add package jabuticaba 
-=======
-dotnet add package jabuticaba --version 0.1.0
->>>>>>> 2405e57ef61dfe8fed49974a4dd6e47104f1aecd
 ```
 Requerimento mínimo: .Net 5.0
 
