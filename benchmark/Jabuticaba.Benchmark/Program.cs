@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
@@ -9,11 +8,15 @@ namespace Jabuticaba.Benchmark
     {
         static void Main(string[] args)
         {
-            #if RELEASE
-                var summary = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
-            #endif
+#if RELEASE
+            var summaryCpf = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
+            var summaryCnpj = BenchmarkRunner.Run<CnpjBenchmarkDiagnoser>();
+#endif
 
-            CpfBenchmark.ValidarCpf(numeroTentativas: 1_000_000);
+            List<IBenchmarkLocal> benchmarks = new() { new CnpjBenchmark(), new CpfBenchmark() };
+            benchmarks.ForEach(
+                b => b.Executar(numeroTentativas: 1_000_000)
+            );
         }
     }
 
@@ -27,38 +30,13 @@ namespace Jabuticaba.Benchmark
         }
     }
 
-    public static class CpfBenchmark
+    [MemoryDiagnoser]
+    public class CnpjBenchmarkDiagnoser
     {
-        /**
-        Último resultado alcançado:
-        Quantidade de cpfs 1000000
-        Tempo execução: 527ms
-        GC geração 2 - 0
-        GC geração 1 - 0
-        GC geração 0 - 45,
-        */
-        public static void ValidarCpf(ulong numeroTentativas)
+        [Benchmark(Baseline = true)]
+        public void ObterCnpj()
         {
-            var stopWatch = new Stopwatch();
-            var gcAntesGeracao2 = GC.CollectionCount(2);
-            var gcAntesGeracao1 = GC.CollectionCount(1);
-            var gcAntesGeracao0 = GC.CollectionCount(0);
-
-            stopWatch.Start();
-            for (ulong i = 0; i < numeroTentativas; i++)
-            {
-                Cpf cpf = "529.982.247-25";
-            }
-            stopWatch.Stop();
-
-            Console.WriteLine($"{nameof(Cpf)}:");
-            Console.WriteLine($"Quantidade de cpfs {numeroTentativas}");
-            Console.WriteLine($"Tempo execução: {stopWatch.ElapsedMilliseconds}ms");
-            Console.WriteLine($"GC geração 2 - {GC.CollectionCount(2) - gcAntesGeracao2}");
-            Console.WriteLine($"GC geração 1 - {GC.CollectionCount(1) - gcAntesGeracao1}");
-            Console.WriteLine($"GC geração 0 - {GC.CollectionCount(0) - gcAntesGeracao0}");
-            Console.WriteLine(DateTime.Now);
-            Console.WriteLine();
+            Cnpj cnpj = "78.322.994/0001-50";
         }
     }
 }
