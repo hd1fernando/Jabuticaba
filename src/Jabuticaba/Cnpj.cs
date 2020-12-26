@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Jabuticaba
 {
@@ -65,6 +66,7 @@ namespace Jabuticaba
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ValidarPrimeroDigito(Span<int> cnpj)
         {
             int resultado =
@@ -93,6 +95,7 @@ namespace Jabuticaba
                 throw new CnpjInvalidoException($"O CNPJ {_cnpj} é inválido.");
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ValidarSegundoDigito(Span<int> cnpj)
         {
             int resultado =
