@@ -38,7 +38,7 @@ namespace Jabuticaba
             {
                 if (_cnpj[i] == 0x2d || _cnpj[i] == 0x2e || _cnpj[i] == 0x2f)
                     continue;
-                if (char.IsDigit(_cnpj[i]) == false)
+                if (_cnpj[i] < 0x30 || _cnpj[i] > 0x39)
                     throw new CnpjInvalidoException($"Um CNPJ deve conter apenas números. O valor '{_cnpj[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cnpj}");
             }
         }
