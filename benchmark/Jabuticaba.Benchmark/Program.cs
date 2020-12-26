@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
@@ -9,11 +10,14 @@ namespace Jabuticaba.Benchmark
     {
         static void Main(string[] args)
         {
-            #if RELEASE
-                var summary = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
-            #endif
+#if RELEASE
+            var summary = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
+#endif
 
-            CpfBenchmark.ValidarCpf(numeroTentativas: 1_000_000);
+            List<IBenchmarkLocal> benchmarks = new() { new CpfBenchmark() };
+            benchmarks.ForEach(
+                b => b.Executar(numeroTentativas: 1_000_000)
+            );
         }
     }
 
@@ -27,17 +31,13 @@ namespace Jabuticaba.Benchmark
         }
     }
 
-    public static class CpfBenchmark
+    public class CnpjBenchmark : IBenchmarkLocal
     {
         /**
         Último resultado alcançado:
-        Quantidade de cpfs 1000000
-        Tempo execução: 527ms
-        GC geração 2 - 0
-        GC geração 1 - 0
-        GC geração 0 - 45,
+        
         */
-        public static void ValidarCpf(ulong numeroTentativas)
+        public void Executar(ulong numeroTentativas)
         {
             var stopWatch = new Stopwatch();
             var gcAntesGeracao2 = GC.CollectionCount(2);
@@ -47,7 +47,7 @@ namespace Jabuticaba.Benchmark
             stopWatch.Start();
             for (ulong i = 0; i < numeroTentativas; i++)
             {
-                Cpf cpf = "529.982.247-25";
+                Cnpj cpf = "02.055.097/0001-65";
             }
             stopWatch.Stop();
 
