@@ -38,6 +38,10 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 |--------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
 | ObterCpf | 56.57 ns | 0.372 ns | 0.311 ns |  1.00 |     - |     - |     - |         - |
 
+|    Method |     Mean |    Error |   StdDev | Ratio | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|---------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
+| ObterCnpj | 76.67 ns | 0.633 ns | 0.561 ns |  1.00 |     - |     - |     - |         - |
+
 // * Legends *
   Mean      : Arithmetic mean of all measurements
   Error     : Half of 99.9% confidence interval
