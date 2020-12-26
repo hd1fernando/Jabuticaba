@@ -1,4 +1,6 @@
 using System;
+using Bogus;
+using Bogus.Extensions.Brazil;
 using FluentAssertions;
 using Jabuticaba;
 using Xunit;
@@ -10,13 +12,35 @@ namespace JabuticabaTests
         [Fact]
         public void DeveCriarCnpjComMascara()
         {
-            Cnpj cnpj = "78.322.994/0001-50";
+            // Arrange
+            Faker faker;
+            int gerar = 100;
+            int inc = 0;
+
+            // Act
+            do
+            {
+                inc++;
+                faker = new("pt_BR");
+                Cnpj cnpj = faker.Company.Cnpj();
+            } while (inc < gerar);
         }
 
         [Fact]
         public void DeveCriarCnpjSemMascara()
         {
-            Cnpj cnpj = "57658986000109";
+            // Arrange
+            Faker faker;
+            int gerar = 100;
+            int inc = 0;
+
+            // Act
+            do
+            {
+                inc++;
+                faker = new("pt_BR");
+                Cnpj cnpj = faker.Company.Cnpj(includeFormatSymbols: false);
+            } while (inc < gerar);
         }
 
         [Fact]
