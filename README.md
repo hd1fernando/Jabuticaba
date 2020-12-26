@@ -6,13 +6,23 @@
 
 # Sobre o projeto
 
-Jabuticaba é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
+**Jabuticaba** é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
 Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação.
+
+### Download & instalação
+**Nuget Package [jabuticaba](https://www.nuget.org/packages/jabuticaba/)**
+#### Visual Studio ou Powershell
+```powershell
+Install-Package jabuticaba
+```
+#### CLI
+```bash
+dotnet add package jabuticaba --version 0.1.0
+```
+Requerimento mínimo: .Net 5.0
 
 # Tipos implementados
  CPF
-
-# Como utlizar
 
 # Benchmark
 ``` bash
@@ -39,7 +49,11 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   1 ns      : 1 Nanosecond (0.000000001 sec)
 ```
 # Detalhes do projeto
-Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com git e [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
+
+[Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+
+[Semantic Versioning](https://semver.org/) para versionamento de versões.
 
 ## Bibliotecas utlizadas
 [XUnit](https://xunit.net/) para criação de testes de automatizado.
@@ -47,6 +61,8 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 [Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
 
 [Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
+
+[Bogus](https://github.com/bchavez/Bogus) para geração de dados fake nos testes de unidade.
 
 # Autor
 Fernando Gonçalves
