@@ -48,7 +48,7 @@ namespace Jabuticaba
             int contador = 0;
             foreach (var c in _cnpj)
             {
-                if (char.IsDigit(c))
+                if (c >= 0x30 && c <= 0x39)
                     contador++;
             }
             if (contador is not 14)
@@ -60,7 +60,7 @@ namespace Jabuticaba
             int contador = 0;
             foreach (var c in _cnpj)
             {
-                if (char.IsDigit(c))
+                if (c >= 0x30 && c <= 0x39)
                     cnpjSpan[contador++] = c - 0x30;
             }
         }
