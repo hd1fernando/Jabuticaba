@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Bogus;
 using Bogus.Extensions.Brazil;
 using FluentAssertions;
@@ -17,7 +16,7 @@ namespace JabuticabaTests
         {
             // Arrange
             Faker faker;
-            int gerar = 1000;
+            int gerar = 100;
             int inc = 0;
 
             // Act
@@ -30,7 +29,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLevantarExecaoCpfVazio()
+        public void DeveLevantarExcecaoCpfVazio()
         {
             Action acao = () => { Cpf cpf = null; };
             acao.Should().Throw<NullReferenceException>()
@@ -38,7 +37,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExececaoQuandoPrimeiroDigitoEhInvalido()
+        public void DeveLancarExcecaoQuandoPrimeiroDigitoEhInvalido()
         {
             Action acao = () => { Cpf cpf = "149.764.610-00"; };
 
@@ -47,7 +46,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExececaoQuandoSegundoDigitoEhInvalido()
+        public void DeveLancarExcecaoQuandoSegundoDigitoEhInvalido()
         {
             Action acao = () => { Cpf cpf = "529.982.247-20"; };
 
@@ -60,7 +59,7 @@ namespace JabuticabaTests
         [InlineData("222.222.222-22")]
         [InlineData("999.999.999.99")]
 
-        public void DeveLancarExececaoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
+        public void DeveLancarExcecaoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
         {
             Action acao = () => { Cpf cpf = cpfRepetido; };
 
@@ -69,7 +68,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExececaoQuandoTamanhoCpfForMaiorDoQue11Digitos()
+        public void DeveLancarExcecaoQuandoTamanhoCpfForMaiorDoQue11Digitos()
         {
             Action acao = () => { Cpf cpf = "149.764.610-331"; };
 
@@ -78,7 +77,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExececaoQuandoTamanhoCpfForMenorDoQue11Digitos()
+        public void DeveLancarExcecaoQuandoTamanhoCpfForMenorDoQue11Digitos()
         {
             Action acao = () => { Cpf cpf = "149.764.610"; };
 
@@ -87,12 +86,12 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExececaoQuandoTamanhoCpfConterValorNaoNumerico()
+        public void DeveLancarExcecaoQuandoCpfConterValorNaoNumerico()
         {
             Action acao = () => { Cpf cpf = "149.764.610a"; };
 
             acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '11'. Cpf informado: 149.764.610a");
+                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
         }
     }
 }
