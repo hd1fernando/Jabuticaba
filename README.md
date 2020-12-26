@@ -1,18 +1,29 @@
-# Jabuticaba
 ![main](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
 ![develop](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=develop)
+
+# Jabuticaba
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hd1fernando/Jabuticaba/blob/feature/cpf/LICENSE)
 
 # Sobre o projeto
 
-Jabuticaba é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
+**Jabuticaba** é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
 Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação.
+
+### Download & instalação
+**Nuget Package [jabuticaba](https://www.nuget.org/packages/jabuticaba/)**
+#### Visual Studio ou Powershell
+```powershell
+Install-Package jabuticaba
+```
+#### CLI
+```bash
+dotnet add package jabuticaba 
+```
+Requerimento mínimo: .Net 5.0
 
 # Tipos implementados
  CPF
-
-# Como utlizar
 
 # Benchmark
 ``` bash
@@ -27,6 +38,10 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 |--------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
 | ObterCpf | 56.57 ns | 0.372 ns | 0.311 ns |  1.00 |     - |     - |     - |         - |
 
+|    Method |     Mean |    Error |   StdDev | Ratio | Gen 0 | Gen 1 | Gen 2 | Allocated |
+|---------- |---------:|---------:|---------:|------:|------:|------:|------:|----------:|
+| ObterCnpj | 76.67 ns | 0.633 ns | 0.561 ns |  1.00 |     - |     - |     - |         - |
+
 // * Legends *
   Mean      : Arithmetic mean of all measurements
   Error     : Half of 99.9% confidence interval
@@ -39,7 +54,11 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   1 ns      : 1 Nanosecond (0.000000001 sec)
 ```
 # Detalhes do projeto
-Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com git e [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
+
+[Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+
+[Semantic Versioning](https://semver.org/) para versionamento de versões.
 
 ## Bibliotecas utlizadas
 [XUnit](https://xunit.net/) para criação de testes de automatizado.
@@ -47,6 +66,8 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 [Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
 
 [Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
+
+[Bogus](https://github.com/bchavez/Bogus) para geração de dados fake nos testes de unidade.
 
 # Autor
 Fernando Gonçalves
@@ -75,3 +96,8 @@ Fernando Gonçalves
 [You Tube - Entendendo a Heap e o Garbage Collector em .NET](https://www.youtube.com/watch?v=s5-uC-taIi4)
 
 [Medium - Gerando dados aleatórios para seus testes de unidade](https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648)
+
+[elemarjr - 3 Mistakes Developers Make that Prevent Them from Improving the Performance of Applications](https://www.elemarjr.com/en/archive/measure-measure-measure-the-importance-of-measuring-and-performance-metrics/)
+
+[Regra de validação para CPF e CNPJ](https://souforce.cloud/regra-de-validacao-para-cpf-e-cnpj/)
+

@@ -104,7 +104,7 @@ namespace Jabuticaba
                 if (_cpf[i] == 0x2d || _cpf[i] == 0x2e)
                     continue;
                 if (_cpf[i] < 0x30 || _cpf[i] > 0x39)
-                    throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i}'. Cpf informado: {_cpf}");
+                    throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cpf}");
             }
         }
 
