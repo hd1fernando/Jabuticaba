@@ -10,13 +10,13 @@ namespace JabuticabaTests
         [Fact]
         public void DeveCriarCnpjComMascara()
         {
-            Cnpj cnpj = "02.055.097/0001-65";
+            Cnpj cnpj = "78.322.994/0001-50";
         }
 
         [Fact]
         public void DeveCriarCnpjSemMascara()
         {
-            Cnpj cnpj = "02055097000165";
+            Cnpj cnpj = "57658986000109";
         }
 
         [Fact]
@@ -46,5 +46,29 @@ namespace JabuticabaTests
                 .WithMessage("O CNPJ deve ter 14 dígitos. 15 dígitos foram informados");
         }
 
+        [Fact]
+        public void DeveLancarExcecaoQuandoPrimeiroDigitoEhInvalido()
+        {
+            Action action = () => { Cnpj cnpj = "02.055.097/0001-05"; };
+
+            action.Should().Throw<CnpjInvalidoException>()
+                .WithMessage("O CNPJ 02.055.097/0001-05 é inválido.");
+        }
+
+        [Fact]
+        public void DeveLancarExcecaoQuandoSegundoDigitoEhInvalido()
+        {
+            Action action = () => { Cnpj cnpj = "02.055.097/0001-60"; };
+
+            action.Should().Throw<CnpjInvalidoException>()
+                .WithMessage("O CNPJ 02.055.097/0001-60 é inválido.");
+        }
+
+        public void DeveLevantarExcecaoCpfVazio()
+        {
+            Action acao = () => { Cpf cpf = null; };
+            acao.Should().Throw<NullReferenceException>()
+                .WithMessage("O CNPJ não pode ser nulo");
+        }
     }
 }
