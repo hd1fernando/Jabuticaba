@@ -2,11 +2,6 @@
 ![develop](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=develop)
 
 # Jabuticaba
-<<<<<<< HEAD
-
-=======
-![.NET](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
->>>>>>> main
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hd1fernando/Jabuticaba/blob/feature/cpf/LICENSE)
 
 # Sobre o projeto
@@ -16,11 +11,11 @@ Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar r
 
 ### Download & instalação
 **Nuget Package [jabuticaba](https://www.nuget.org/packages/jabuticaba/)**
-#### Visual Studio ou Powershell
+Visual Studio ou Powershell
 ```powershell
 Install-Package jabuticaba
 ```
-#### CLI
+CLI
 ```bash
 dotnet add package jabuticaba 
 ```
