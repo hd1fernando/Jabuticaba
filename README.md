@@ -1,4 +1,5 @@
 ![main](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
+[![NuGet](http://img.shields.io/nuget/v/:jabuticaba)](https://www.nuget.org/packages/jabuticaba/)
 
 # Jabuticaba
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hd1fernando/Jabuticaba/blob/feature/cpf/LICENSE)
@@ -78,9 +79,11 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 
 ## Contribuidores
 
-Criado por Fernando Gonçalves [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
+Criado por Fernando Gonçalves 
+
+[<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
 
 
 # Referências:
 
-Todas as fontes utilizadas até o momento estão disponíveis [aqui](https://github.com/hd1fernando/Jabuticaba/blob/feature/organizacaoProjeto/doc/Referencias.md)
+Todas as fontes utilizadas até o momento estão disponíveis [aqui](https://github.com/hd1fernando/Jabuticaba/blob/feature/organizacaoProjeto/doc/Referencias.md).
