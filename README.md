@@ -1,31 +1,37 @@
-![main](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
-![develop](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=develop)
+![.NET](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
+[![NuGet](http://img.shields.io/nuget/v/:jabuticaba)](https://www.nuget.org/packages/jabuticaba/)
 
 # Jabuticaba
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/hd1fernando/Jabuticaba/blob/feature/cpf/LICENSE)
 
 # Sobre o projeto
 
-**Jabuticaba** é uma biblioteca de tipos que são utilizados no Brasil. Como CPF, RG, dentre outros.
-Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação.
+**Jabuticaba** é uma biblioteca que busca fornecer como tipo valores utilizados em aplicações que lidam com dados de usuários (ex: **CPF**, **CNPJ**, **RG**, ...).
 
-### Download & instalação
-**Nuget Package [jabuticaba](https://www.nuget.org/packages/jabuticaba/)**
+Seu principal objeto é evitar que o desenvolvedor necessite recriar novos tipos para novos projetos além de ter foco em desempenho e baixa alocação de memória.
 
-Visual Studio ou Powershell
+## Download e instalação
+Use o gerenciador de pacotes **Nuget [jabuticaba](https://www.nuget.org/packages/jabuticaba/)** para realizar a instalação.
+
 ```powershell
 Install-Package jabuticaba
 ```
-CLI
 ```bash
 dotnet add package jabuticaba 
 ```
-Requerimento mínimo: .Net 5.0
+Requerimento mínimo: **.Net 5.0**.
 
-# Tipos implementados
- CPF
+## Exemplo
 
-# Benchmark
+```C#
+Cnpj cnpj = "02.055.097/0001-65";
+```
+
+## Tipos já implementados
+ * CPF
+ * CNPJ
+ 
+## Benchmark
 ``` bash
 // * Legends *
 BenchmarkDotNet=v0.12.1, OS=ubuntu 20.04
@@ -53,51 +59,29 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
   1 ns      : 1 Nanosecond (0.000000001 sec)
 ```
-# Detalhes do projeto
-Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
+## Detalhes do projeto
+* [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
 
-[Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+* [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
 
-[Semantic Versioning](https://semver.org/) para versionamento de versões.
+* [Semantic Versioning](https://semver.org/) para versionamento de versões.
 
 ## Bibliotecas utlizadas
-[XUnit](https://xunit.net/) para criação de testes de automatizado.
+- [XUnit](https://xunit.net/) para criação de testes de automatizado.
 
-[Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
+- [Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
 
-[Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
+- [Benchmark.NET](https://benchmarkdotnet.org/) para realizar testes de benchmark.
 
-[Bogus](https://github.com/bchavez/Bogus) para geração de dados fake nos testes de unidade.
+- [Bogus](https://github.com/bchavez/Bogus) para geração de dados fake nos testes de unidade.
 
-# Autor
-Fernando Gonçalves
+## Contribuidores
+
+Criado por Fernando Gonçalves 
 
 [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
 
 
 # Referências:
 
-[stevejgordon - Series: Writing High-Performance C# and .NET Code](https://www.stevejgordon.co.uk/writing-high-performance-csharp-and-dotnet-code)
-
-[eximiaco - Limpando Strings](https://www.eximiaco.tech/pt/2019/06/11/limpando-strings/)
-
-[microsoft- unsafe (C# Compiler Options)](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/unsafe-compiler-option)
-
-[microsoft- stackalloc expression](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc)
-
-[eximiaco - Validação de CPF](https://www.eximiaco.tech/pt/2019/06/11/validacao-de-cpf/)
-
-[elemarjr - Trying to Improve Performance in .NET? Here are the basics you need to know about Intermediate Language, JIT, WinDBG, and Assembly](https://www.elemarjr.com/en/archive/trying-to-improve-performance-in-net-here-are-the-basics-you-need-to-know-about-intermediate-language-jit-windbg-and-assembly/)
-
-[elemarjr - Lições de performances aprendidas com Roslyn](https://www.elemarjr.com/pt/archive/licoes-de-performances-aprendidas-com-roslyn-1-objectpool-e-pooledstringbuilder/)
-
-[dicasdeprogramacao - Algoritmo para Validar CPF](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
-
-[You Tube - Entendendo a Heap e o Garbage Collector em .NET](https://www.youtube.com/watch?v=s5-uC-taIi4)
-
-[Medium - Gerando dados aleatórios para seus testes de unidade](https://medium.com/cristiano-cunha/gerando-dados-aleat%C3%B3rios-para-seus-testes-de-unidade-bogus-c-9dd233c9c648)
-
-[elemarjr - 3 Mistakes Developers Make that Prevent Them from Improving the Performance of Applications](https://www.elemarjr.com/en/archive/measure-measure-measure-the-importance-of-measuring-and-performance-metrics/)
-
-[Regra de validação para CPF e CNPJ](https://souforce.cloud/regra-de-validacao-para-cpf-e-cnpj/)
-
+Todas as fontes utilizadas até o momento estão disponíveis [aqui](https://github.com/hd1fernando/Jabuticaba/blob/feature/organizacaoProjeto/doc/Referencias.md).
