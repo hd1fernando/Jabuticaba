@@ -1,4 +1,4 @@
-![main](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
+![.NET](https://github.com/hd1fernando/Jabuticaba/workflows/.NET/badge.svg?branch=main)
 [![NuGet](http://img.shields.io/nuget/v/:jabuticaba)](https://www.nuget.org/packages/jabuticaba/)
 
 # Jabuticaba
