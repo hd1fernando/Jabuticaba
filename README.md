@@ -24,6 +24,8 @@ Requerimento mínimo: .Net 5.0
 
 # Tipos implementados
  CPF
+ CNPJ
+ RG - (SSP SP)
 
 # Benchmark
 ``` bash
@@ -101,3 +103,4 @@ Fernando Gonçalves
 
 [Regra de validação para CPF e CNPJ](https://souforce.cloud/regra-de-validacao-para-cpf-e-cnpj/)
 
+[DÍGITOS DE VERIFICAÇÃO](http://ghiorzi.org/DVnew.htm)
