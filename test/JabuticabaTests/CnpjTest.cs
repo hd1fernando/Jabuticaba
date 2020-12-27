@@ -7,6 +7,7 @@ using Xunit;
 
 namespace JabuticabaTests
 {
+
     public class CnpjTest
     {
         [Fact]
@@ -88,9 +89,10 @@ namespace JabuticabaTests
                 .WithMessage("O CNPJ 02.055.097/0001-60 é inválido.");
         }
 
-        public void DeveLevantarExcecaoCpfVazio()
+        [Fact]
+        public void DeveLevantarExcecaoCnpjNulo()
         {
-            Action acao = () => { Cpf cpf = null; };
+            Action acao = () => { Cnpj cpf = null; };
             acao.Should().Throw<NullReferenceException>()
                 .WithMessage("O CNPJ não pode ser nulo");
         }
