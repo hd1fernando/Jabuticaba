@@ -20,7 +20,7 @@ dotnet add package jabuticaba
 ```
 Requerimento mínimo: **.Net 5.0**.
 
-## Uso
+## Exemplo
 
 ```C#
 Cnpj cnpj = "02.055.097/0001-65";
@@ -61,11 +61,11 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
   1 ns      : 1 Nanosecond (0.000000001 sec)
 ```
 ## Detalhes do projeto
-Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
+* [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
 
-[Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
+* [Udacity Style Guide](https://udacity.github.io/git-styleguide/) para descrição de commits.
 
-[Semantic Versioning](https://semver.org/) para versionamento de versões.
+* [Semantic Versioning](https://semver.org/) para versionamento de versões.
 
 ## Bibliotecas utlizadas
 - [XUnit](https://xunit.net/) para criação de testes de automatizado.
@@ -76,10 +76,9 @@ Esse projeto usa [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-
 
 - [Bogus](https://github.com/bchavez/Bogus) para geração de dados fake nos testes de unidade.
 
-## Autor
-Fernando Gonçalves
+## Contribuidores
 
-[<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
+Criado por Fernando Gonçalves [<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/hd1fernando/)
 
 
 # Referências:
