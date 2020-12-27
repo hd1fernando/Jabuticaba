@@ -31,8 +31,6 @@ Cnpj cnpj = "02.055.097/0001-65";
  * CPF
  * CNPJ
  
-## Como contribuir
-
 ## Benchmark
 ``` bash
 // * Legends *
