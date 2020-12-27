@@ -1,19 +1,14 @@
 using System;
 using System.Diagnostics;
+using Jabuticaba.OrgaoEmissor.SSP.SP;
 
 namespace Jabuticaba.Benchmark
 {
-    public class CpfBenchmark : IBenchmarkLocal
+    public class RgSSPSpBenchmark : IBenchmarkLocal
     {
         /**
         Último resultado alcançado:
-        Cpf:
-        Quantidade de cpfs 1000000
-        Tempo execução: 737ms
-        GC geração 2 - 0
-        GC geração 1 - 0
-        GC geração 0 - 0
-        12/26/2020 7:49:36 AM
+        
         */
         public void Executar(ulong numeroTentativas)
         {
@@ -25,12 +20,12 @@ namespace Jabuticaba.Benchmark
             stopWatch.Start();
             for (ulong i = 0; i < numeroTentativas; i++)
             {
-                Cpf cpf = "529.982.247-25";
+                Rg rg = "15.506.536-1";
             }
             stopWatch.Stop();
 
-            Console.WriteLine($"{nameof(Cpf)}:");
-            Console.WriteLine($"Quantidade de cpfs {numeroTentativas}");
+            Console.WriteLine($"{nameof(Rg)}:");
+            Console.WriteLine($"Quantidade de Rgs {numeroTentativas}");
             Console.WriteLine($"Tempo execução: {stopWatch.ElapsedMilliseconds}ms");
             Console.WriteLine($"GC geração 2 - {GC.CollectionCount(2) - gcAntesGeracao2}");
             Console.WriteLine($"GC geração 1 - {GC.CollectionCount(1) - gcAntesGeracao1}");
@@ -39,5 +34,6 @@ namespace Jabuticaba.Benchmark
             Console.WriteLine();
         }
     }
+
 
 }
