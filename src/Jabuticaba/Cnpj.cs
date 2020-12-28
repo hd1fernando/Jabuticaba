@@ -6,11 +6,14 @@ namespace Jabuticaba
     public struct Cnpj
     {
         private string _cnpj;
+        public bool EValido { get; private set; }
+        public string Erro { get; private set; }
 
         private Cnpj(string cnpj)
         {
+            Erro = null;
             _cnpj = cnpj;
-            Validar();
+            EValido = true;
         }
 
         public static implicit operator Cnpj(string cnpj)
@@ -18,21 +21,26 @@ namespace Jabuticaba
 
         public override string ToString()
             => _cnpj;
+
         public void Validar()
         {
             Span<int> stackCnpj = stackalloc int[14];
-            ValidarSeNulo();
-            ValidarSeSomentDigito();
-            ValidarTamanho();
-            RemoverMascara(stackCnpj);
-            ValidarPrimeroDigito(stackCnpj);
-            ValidarSegundoDigito(stackCnpj);
-        }
 
-        private void ValidarSeNulo()
-        {
-            if (_cnpj is null)
-                throw new NullReferenceException("O CNPJ não pode ser nulo");
+            ValidarSeSomentDigito();
+            if (EValido == false) return;
+
+            ValidarTamanho();
+            if (EValido == false) return;
+
+            RemoverMascara(stackCnpj);
+            if (EValido == false) return;
+
+            ValidarPrimeroDigito(stackCnpj);
+            if (EValido == false) return;
+
+            ValidarSegundoDigito(stackCnpj);
+            if (EValido == false) return;
+
         }
 
         private void ValidarSeSomentDigito()
@@ -42,7 +50,10 @@ namespace Jabuticaba
                 if (_cnpj[i] == 0x2d || _cnpj[i] == 0x2e || _cnpj[i] == 0x2f)
                     continue;
                 if (_cnpj[i] < 0x30 || _cnpj[i] > 0x39)
-                    throw new CnpjInvalidoException($"Um CNPJ deve conter apenas números. O valor '{_cnpj[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cnpj}");
+                {
+                    EValido = false;
+                    Erro = $"Um CNPJ deve conter apenas números. O valor '{_cnpj[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cnpj}";
+                }
             }
         }
 
@@ -55,7 +66,10 @@ namespace Jabuticaba
                     contador++;
             }
             if (contador is not 14)
-                throw new CnpjInvalidoException($"O CNPJ deve ter 14 dígitos. {contador} dígitos foram informados");
+            {
+                EValido = false;
+                Erro = $"O CNPJ deve ter 14 dígitos. {contador} dígitos foram informados";
+            }
         }
 
         private void RemoverMascara(Span<int> cnpjSpan)
@@ -94,7 +108,10 @@ namespace Jabuticaba
                 digitoVerificador = 11 - mod;
 
             if (cnpj[12] != digitoVerificador)
-                throw new CnpjInvalidoException($"O CNPJ {_cnpj} é inválido.");
+            {
+                EValido = false;
+                Erro = $"O CNPJ {_cnpj} é inválido.";
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -124,7 +141,10 @@ namespace Jabuticaba
                 digitoVerificador = 11 - mod;
 
             if (cnpj[13] != digitoVerificador)
-                throw new CnpjInvalidoException($"O CNPJ {_cnpj} é inválido.");
+            {
+                EValido = false;
+                Erro = $"O CNPJ {_cnpj} é inválido.";
+            }
         }
 
     }
