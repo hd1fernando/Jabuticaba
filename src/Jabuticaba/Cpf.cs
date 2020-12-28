@@ -5,25 +5,17 @@ using System.Runtime.CompilerServices;
 namespace Jabuticaba
 {
 
-    public enum ModoCascateamento
-    {
-        Default,
-        PararNoPrimeiroErro
-    }
-
     public struct Cpf
     {
         private string _cpf;
-        private ModoCascateamento _modoCascateamento;
         public bool EValido { get; private set; }
-        public IList<string> Erros { get; private set; }
+        public string Erro { get; private set; }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
         private Cpf(string cpf)
         {
-            Erros = null;
+            Erro = null;
             _cpf = cpf;
-            _modoCascateamento = ModoCascateamento.Default;
             EValido = true;
         }
 
@@ -33,33 +25,27 @@ namespace Jabuticaba
         public override string ToString()
             => _cpf;
 
-        public void Validar(ModoCascateamento modoCascateamento = ModoCascateamento.Default)
+        public void Validar()
         {
-            _modoCascateamento = modoCascateamento;
             Span<int> stackCpf = stackalloc int[11];
 
             ValidarSeSomenteDigito();
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
+            if (EValido == false) return;
 
             ValidarTamanho();
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
+            if (EValido == false) return;
 
             RemoverMascara(stackCpf);
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
+            if (EValido == false) return;
 
             ValidarDigitosRepetidos(stackCpf);
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
+            if (EValido == false) return;
 
             ValidarPrimeroDigito(stackCpf);
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
+            if (EValido == false) return;
 
             ValidarSegundoDigito(stackCpf);
-            if (_modoCascateamento == ModoCascateamento.PararNoPrimeiroErro && EValido == false) return;
-        }
-
-        private void IniciarListaDeErros()
-        {
-            if (Erros is null) Erros = new List<string>();
+            if (EValido == false) return;
         }
 
         private void ValidarSeNulo()
@@ -67,8 +53,7 @@ namespace Jabuticaba
             if (_cpf is null)
             {
                 EValido = false;
-                IniciarListaDeErros();
-                Erros.Add("O CPF não pode ser nulo");
+                Erro = "O CPF não pode ser nulo";
             }
         }
 
@@ -80,8 +65,7 @@ namespace Jabuticaba
                     return;
             }
             EValido = false;
-            IniciarListaDeErros();
-            Erros.Add("CPF com números repetidos não são válidos");
+            Erro = "CPF com números repetidos não são válidos";
         }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
@@ -108,8 +92,7 @@ namespace Jabuticaba
             if (cpf[10] != restoDaDivisao)
             {
                 EValido = false;
-                IniciarListaDeErros();
-                Erros.Add($"O CPF {_cpf} é inválido.");
+                Erro = $"O CPF {_cpf} é inválido.";
             }
         }
 
@@ -135,8 +118,7 @@ namespace Jabuticaba
             if (cpf[9] != restoDaDivisao)
             {
                 EValido = false;
-                IniciarListaDeErros();
-                Erros.Add($"O CPF {_cpf} é inválido.");
+                Erro = $"O CPF {_cpf} é inválido.";
             }
         }
 
@@ -149,8 +131,7 @@ namespace Jabuticaba
                 if (_cpf[i] < 0x30 || _cpf[i] > 0x39)
                 {
                     EValido = false;
-                    IniciarListaDeErros();
-                    Erros.Add($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cpf}");
+                    Erro = $"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cpf}";
                     break;
                 }
             }
@@ -168,8 +149,7 @@ namespace Jabuticaba
             {
 
                 EValido = false;
-                IniciarListaDeErros();
-                Erros.Add($"O cpf deve ter 11 dígitos. {contador} dígitos foram informados");
+                Erro = $"O cpf deve ter 11 dígitos. {contador} dígitos foram informados";
             }
         }
 
