@@ -35,7 +35,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoPrimeiroDigitoEhInvalido()
+        public void DeveSerInvalidoQuandoPrimeiroDigitoEhInvalido()
         {
             Cpf cpf = "149.764.610-00";
             cpf.Validar(ModoCascateamento.PararNoPrimeiroErro);
@@ -46,7 +46,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoSegundoDigitoEhInvalido()
+        public void DeveSerInvalidoQuandoSegundoDigitoEhInvalido()
         {
             Cpf cpf = "529.982.247-20";
             cpf.Validar();
@@ -62,7 +62,7 @@ namespace JabuticabaTests
         [InlineData("222.222.222-22")]
         [InlineData("999.999.999.99")]
 
-        public void DeveLancarExcecaoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
+        public void DeveSerInvalidoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
         {
             Cpf cpf = cpfRepetido;
             cpf.Validar();
@@ -73,7 +73,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoTamanhoCpfForMaiorDoQue11Digitos()
+        public void DeveSerInvalidoQuandoTamanhoCpfForMaiorDoQue11Digitos()
         {
 
             Cpf cpf = "149.764.610-331";
@@ -85,7 +85,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoTamanhoCpfForMenorDoQue11Digitos()
+        public void DeveSerInvalidoQuandoTamanhoCpfForMenorDoQue11Digitos()
         {
             Cpf cpf = "149.764.610";
 
@@ -97,7 +97,7 @@ namespace JabuticabaTests
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoCpfConterValorNaoNumerico()
+        public void DeveSerInvalidoQuandoCpfConterValorNaoNumerico()
         {
             Cpf cpf = "149.764.610a";
             cpf.Validar();

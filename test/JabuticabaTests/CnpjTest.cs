@@ -88,11 +88,5 @@ namespace JabuticabaTests
                 .WithMessage("O CNPJ 02.055.097/0001-60 é inválido.");
         }
 
-        public void DeveLevantarExcecaoCpfVazio()
-        {
-            Action acao = () => { Cpf cpf = null; };
-            acao.Should().Throw<NullReferenceException>()
-                .WithMessage("O CNPJ não pode ser nulo");
-        }
     }
 }
