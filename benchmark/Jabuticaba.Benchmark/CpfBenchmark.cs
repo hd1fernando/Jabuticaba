@@ -25,7 +25,9 @@ namespace Jabuticaba.Benchmark
             stopWatch.Start();
             for (ulong i = 0; i < numeroTentativas; i++)
             {
-                Cpf cpf = "529.982.247-25";
+
+                    Cpf cpf = "529.982.247-25";
+                    cpf.Validar();
             }
             stopWatch.Stop();
 

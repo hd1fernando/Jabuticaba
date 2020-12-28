@@ -1,19 +1,22 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Jabuticaba.Excecoes;
 
 namespace Jabuticaba
 {
+
     public struct Cpf
     {
         private string _cpf;
+        public bool EValido { get; private set; }
+        public string Erro { get; private set; }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
         private Cpf(string cpf)
         {
+            Erro = null;
             _cpf = cpf;
-            Validar();
+            EValido = true;
         }
 
         public static implicit operator Cpf(string cpf)
@@ -21,22 +24,37 @@ namespace Jabuticaba
 
         public override string ToString()
             => _cpf;
-        private void Validar()
+
+        public void Validar()
         {
             Span<int> stackCpf = stackalloc int[11];
-            ValidarSeNulo();
+
             ValidarSeSomenteDigito();
+            if (EValido == false) return;
+
             ValidarTamanho();
+            if (EValido == false) return;
+
             RemoverMascara(stackCpf);
+            if (EValido == false) return;
+
             ValidarDigitosRepetidos(stackCpf);
+            if (EValido == false) return;
+
             ValidarPrimeroDigito(stackCpf);
+            if (EValido == false) return;
+
             ValidarSegundoDigito(stackCpf);
+            if (EValido == false) return;
         }
 
         private void ValidarSeNulo()
         {
             if (_cpf is null)
-                throw new NullReferenceException("O CPF não pode ser nulo");
+            {
+                EValido = false;
+                Erro = "O CPF não pode ser nulo";
+            }
         }
 
         private void ValidarDigitosRepetidos(Span<int> cpf)
@@ -46,7 +64,8 @@ namespace Jabuticaba
                 if (cpf[i] != cpf[0])
                     return;
             }
-            throw new CpfInvalidoException("CPF com números repetidos não são válidos");
+            EValido = false;
+            Erro = "CPF com números repetidos não são válidos";
         }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
@@ -71,7 +90,10 @@ namespace Jabuticaba
                 restoDaDivisao = 0;
 
             if (cpf[10] != restoDaDivisao)
-                throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
+            {
+                EValido = false;
+                Erro = $"O CPF {_cpf} é inválido.";
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization | MethodImplOptions.AggressiveInlining)]
@@ -94,7 +116,10 @@ namespace Jabuticaba
                 restoDaDivisao = 0;
 
             if (cpf[9] != restoDaDivisao)
-                throw new CpfInvalidoException($"O CPF {_cpf} é inválido.");
+            {
+                EValido = false;
+                Erro = $"O CPF {_cpf} é inválido.";
+            }
         }
 
         private void ValidarSeSomenteDigito()
@@ -104,7 +129,11 @@ namespace Jabuticaba
                 if (_cpf[i] == 0x2d || _cpf[i] == 0x2e)
                     continue;
                 if (_cpf[i] < 0x30 || _cpf[i] > 0x39)
-                    throw new CpfInvalidoException($"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cpf}");
+                {
+                    EValido = false;
+                    Erro = $"Um CPF deve conter apenas números. O valor '{_cpf[i]}' foi encontrado na posição '{i + 1}'. Cpf informado: {_cpf}";
+                    break;
+                }
             }
         }
 
@@ -117,7 +146,11 @@ namespace Jabuticaba
                     contador++;
             }
             if (contador is not 11)
-                throw new CpfInvalidoException($"O cpf deve ter 11 dígitos. {contador} dígitos foram informados");
+            {
+
+                EValido = false;
+                Erro = $"O cpf deve ter 11 dígitos. {contador} dígitos foram informados";
+            }
         }
 
         private void RemoverMascara(Span<int> nCpf)
@@ -130,4 +163,5 @@ namespace Jabuticaba
             }
         }
     }
+
 }

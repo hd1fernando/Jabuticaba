@@ -1,9 +1,7 @@
-using System;
 using Bogus;
 using Bogus.Extensions.Brazil;
 using FluentAssertions;
 using Jabuticaba;
-using Jabuticaba.Excecoes;
 using Xunit;
 
 namespace JabuticabaTests
@@ -19,38 +17,43 @@ namespace JabuticabaTests
             int gerar = 100;
             int inc = 0;
 
-            // Act
             do
             {
                 inc++;
                 faker = new("pt_BR");
+
+                // Act
                 Cpf cpf = faker.Person.Cpf();
+
+                cpf.Validar();
+
+                // Assert
+                cpf.EValido.Should().BeTrue();
+                cpf.Erro.Should().BeNull();
             } while (inc < gerar);
+
         }
 
         [Fact]
-        public void DeveLevantarExcecaoCpfVazio()
+        public void DeveSerInvalidoQuandoPrimeiroDigitoEhInvalido()
         {
-            Action acao = () => { Cpf cpf = null; };
-            acao.Should().Throw<NullReferenceException>()
-                .WithMessage("O CPF não pode ser nulo");
+            Cpf cpf = "149.764.610-00";
+            cpf.Validar();
+
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("O CPF 149.764.610-00 é inválido.");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoPrimeiroDigitoEhInvalido()
+        public void DeveSerInvalidoQuandoSegundoDigitoEhInvalido()
         {
-            Action acao = () => { Cpf cpf = "149.764.610-00"; };
+            Cpf cpf = "529.982.247-20";
+            cpf.Validar();
 
-            acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("O CPF 149.764.610-00 é inválido.");
-        }
-
-        [Fact]
-        public void DeveLancarExcecaoQuandoSegundoDigitoEhInvalido()
-        {
-            Action acao = () => { Cpf cpf = "529.982.247-20"; };
-
-            acao.Should().Throw<CpfInvalidoException>();
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo($"O CPF {cpf} é inválido.");
         }
 
         [Theory]
@@ -59,39 +62,49 @@ namespace JabuticabaTests
         [InlineData("222.222.222-22")]
         [InlineData("999.999.999.99")]
 
-        public void DeveLancarExcecaoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
+        public void DeveSerInvalidoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
         {
-            Action acao = () => { Cpf cpf = cpfRepetido; };
+            Cpf cpf = cpfRepetido;
+            cpf.Validar();
 
-            acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("CPF com números repetidos não são válidos");
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("CPF com números repetidos não são válidos");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoTamanhoCpfForMaiorDoQue11Digitos()
+        public void DeveSerInvalidoQuandoTamanhoCpfForMaiorDoQue11Digitos()
         {
-            Action acao = () => { Cpf cpf = "149.764.610-331"; };
 
-            acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("O cpf deve ter 11 dígitos. 12 dígitos foram informados");
+            Cpf cpf = "149.764.610-331";
+            cpf.Validar();
+
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("O cpf deve ter 11 dígitos. 12 dígitos foram informados");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoTamanhoCpfForMenorDoQue11Digitos()
+        public void DeveSerInvalidoQuandoTamanhoCpfForMenorDoQue11Digitos()
         {
-            Action acao = () => { Cpf cpf = "149.764.610"; };
+            Cpf cpf = "149.764.610";
 
-            acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("O cpf deve ter 11 dígitos. 9 dígitos foram informados");
+            cpf.Validar();
+
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("O cpf deve ter 11 dígitos. 9 dígitos foram informados");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoCpfConterValorNaoNumerico()
+        public void DeveSerInvalidoQuandoCpfConterValorNaoNumerico()
         {
-            Action acao = () => { Cpf cpf = "149.764.610a"; };
+            Cpf cpf = "149.764.610a";
+            cpf.Validar();
 
-            acao.Should().Throw<CpfInvalidoException>()
-                .WithMessage("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
         }
     }
 }
