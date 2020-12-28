@@ -28,3 +28,5 @@
 [dicasdeprogramacao - Algoritmo para Validar CPF](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
 
 [Regra de validação para CPF e CNPJ](https://souforce.cloud/regra-de-validacao-para-cpf-e-cnpj/)
+
+[Correios - Estrutura do CEP](https://www.correios.com.br/enviar-e-receber/ferramentas/cep/estrutura-do-cep)
