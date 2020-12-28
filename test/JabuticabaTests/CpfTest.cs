@@ -29,7 +29,7 @@ namespace JabuticabaTests
 
                 // Assert
                 cpf.EValido.Should().BeTrue();
-                cpf.Erros.Should().BeNull();
+                cpf.Erro.Should().BeNull();
             } while (inc < gerar);
 
         }
@@ -38,11 +38,11 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoPrimeiroDigitoEhInvalido()
         {
             Cpf cpf = "149.764.610-00";
-            cpf.Validar(ModoCascateamento.PararNoPrimeiroErro);
+            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf("O CPF 149.764.610-00 é inválido.");
+            cpf.Erro.Should()
+                .BeEquivalentTo("O CPF 149.764.610-00 é inválido.");
         }
 
         [Fact]
@@ -52,8 +52,8 @@ namespace JabuticabaTests
             cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf($"O CPF {cpf} é inválido.");
+            cpf.Erro.Should()
+                .BeEquivalentTo($"O CPF {cpf} é inválido.");
         }
 
         [Theory]
@@ -68,8 +68,8 @@ namespace JabuticabaTests
             cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf("CPF com números repetidos não são válidos");
+            cpf.Erro.Should()
+                .BeEquivalentTo("CPF com números repetidos não são válidos");
         }
 
         [Fact]
@@ -77,11 +77,11 @@ namespace JabuticabaTests
         {
 
             Cpf cpf = "149.764.610-331";
-            cpf.Validar(ModoCascateamento.PararNoPrimeiroErro);
+            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf("O cpf deve ter 11 dígitos. 12 dígitos foram informados");
+            cpf.Erro.Should()
+                .BeEquivalentTo("O cpf deve ter 11 dígitos. 12 dígitos foram informados");
         }
 
         [Fact]
@@ -92,8 +92,8 @@ namespace JabuticabaTests
             cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf("O cpf deve ter 11 dígitos. 9 dígitos foram informados");
+            cpf.Erro.Should()
+                .BeEquivalentTo("O cpf deve ter 11 dígitos. 9 dígitos foram informados");
         }
 
         [Fact]
@@ -103,8 +103,8 @@ namespace JabuticabaTests
             cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
-            cpf.Erros.Should()
-                .ContainEquivalentOf("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
+            cpf.Erro.Should()
+                .BeEquivalentTo("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
         }
     }
 }

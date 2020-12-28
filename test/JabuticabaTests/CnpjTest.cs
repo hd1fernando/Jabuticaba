@@ -1,4 +1,3 @@
-using System;
 using Bogus;
 using Bogus.Extensions.Brazil;
 using FluentAssertions;
@@ -17,12 +16,18 @@ namespace JabuticabaTests
             int gerar = 100;
             int inc = 0;
 
-            // Act
             do
             {
                 inc++;
                 faker = new("pt_BR");
+                // Act
                 Cnpj cnpj = faker.Company.Cnpj();
+                cnpj.Validar();
+
+                // Assert
+                cnpj.EValido.Should().BeTrue();
+                cnpj.Erro.Should().BeNull();
+
             } while (inc < gerar);
         }
 
@@ -34,58 +39,76 @@ namespace JabuticabaTests
             int gerar = 100;
             int inc = 0;
 
-            // Act
             do
             {
                 inc++;
                 faker = new("pt_BR");
+
+                // Act
                 Cnpj cnpj = faker.Company.Cnpj(includeFormatSymbols: false);
+                cnpj.Validar();
+
+                // Assert
+                cnpj.EValido.Should().BeTrue();
+                cnpj.Erro.Should().BeNull();
+
             } while (inc < gerar);
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoCnpjContarValorNaoNumerico()
+        public void DeveSerInvalidoQuandoCnpjContarValorNaoNumerico()
         {
-            Action action = () => { Cnpj cnpj = "2.055.097/0001-6a"; };
+            Cnpj cnpj = "2.055.097/0001-6a";
+            cnpj.Validar();
 
-            action.Should().Throw<CnpjInvalidoException>()
-                .WithMessage("Um CNPJ deve conter apenas números. O valor 'a' foi encontrado na posição '17'. Cpf informado: 2.055.097/0001-6a");
+            cnpj.EValido.Should().BeFalse();
+            cnpj.Erro.Should()
+                .BeEquivalentTo("Um CNPJ deve conter apenas números. O valor 'a' foi encontrado na posição '17'. Cpf informado: 2.055.097/0001-6a");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuanCnpjForMenorDoQue14Digitos()
+        public void DeveSerInvalidoQuanCnpjForMenorDoQue14Digitos()
         {
-            Action action = () => { Cnpj cnpj = "02.055.097/0001-6"; };
+            Cnpj cnpj = "02.055.097/0001-6";
+            cnpj.Validar();
 
-            action.Should().Throw<CnpjInvalidoException>()
-                .WithMessage("O CNPJ deve ter 14 dígitos. 13 dígitos foram informados");
+            cnpj.EValido.Should().BeFalse();
+            cnpj.Erro.Should()
+                .BeEquivalentTo("O CNPJ deve ter 14 dígitos. 13 dígitos foram informados");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuanCnpjForMaiorDoQue14Digitos()
+        public void DeveSerInvalidoQuanCnpjForMaiorDoQue14Digitos()
         {
-            Action action = () => { Cnpj cnpj = "02.055.097/0001-656"; };
+            Cnpj cnpj = "02.055.097/0001-656";
+            cnpj.Validar();
 
-            action.Should().Throw<CnpjInvalidoException>()
-                .WithMessage("O CNPJ deve ter 14 dígitos. 15 dígitos foram informados");
+            cnpj.EValido.Should().BeFalse();
+            cnpj.Erro.Should()
+                .BeEquivalentTo("O CNPJ deve ter 14 dígitos. 15 dígitos foram informados");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoPrimeiroDigitoEhInvalido()
+        public void DeveSerInvalidoQuandoPrimeiroDigitoEhInvalido()
         {
-            Action action = () => { Cnpj cnpj = "02.055.097/0001-05"; };
 
-            action.Should().Throw<CnpjInvalidoException>()
-                .WithMessage("O CNPJ 02.055.097/0001-05 é inválido.");
+            Cnpj cnpj = "02.055.097/0001-05";
+            cnpj.Validar();
+
+            cnpj.EValido.Should().BeFalse();
+             cnpj.Erro.Should()
+                .BeEquivalentTo("O CNPJ 02.055.097/0001-05 é inválido.");
         }
 
         [Fact]
-        public void DeveLancarExcecaoQuandoSegundoDigitoEhInvalido()
+        public void DeveSerInvalidoQuandoSegundoDigitoEhInvalido()
         {
-            Action action = () => { Cnpj cnpj = "02.055.097/0001-60"; };
+            Cnpj cnpj = "02.055.097/0001-60";
+            cnpj.Validar();
 
-            action.Should().Throw<CnpjInvalidoException>()
-                .WithMessage("O CNPJ 02.055.097/0001-60 é inválido.");
+            cnpj.EValido.Should().BeFalse();
+            cnpj.Erro.Should()
+                .BeEquivalentTo("O CNPJ 02.055.097/0001-60 é inválido.");
         }
 
     }
