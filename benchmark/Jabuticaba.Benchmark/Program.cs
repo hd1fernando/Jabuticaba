@@ -27,19 +27,6 @@ namespace Jabuticaba.Benchmark
         }
     }
 
-<<<<<<< HEAD
-    [MemoryDiagnoser]
-    public class CpfBenchmarkDiagnoser
-    {
-        [Benchmark(Baseline = true)]
-        public void ObterCpf()
-        {
-            Cpf cpf = "529.982.247-25";
-        }
-    }
-
-=======
->>>>>>> develop
     [RankColumn]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [MemoryDiagnoser]
@@ -53,12 +40,6 @@ namespace Jabuticaba.Benchmark
         }
 
         [Benchmark]
-<<<<<<< HEAD
-        public void ObterCnpjSemMascara()
-        {
-            Cnpj Cnpj = "78322994000150";
-        }
-=======
         public void CnpjSemMascara()
         {
             Cnpj cnpj = "78322994000150";
@@ -100,6 +81,5 @@ namespace Jabuticaba.Benchmark
             cnpj.Validar();
         }
 
->>>>>>> develop
     }
 }
