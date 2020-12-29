@@ -22,7 +22,6 @@ namespace JabuticabaTests
                 faker = new("pt_BR");
                 // Act
                 Cnpj cnpj = faker.Company.Cnpj();
-                cnpj.Validar();
 
                 // Assert
                 cnpj.EValido.Should().BeTrue();
@@ -46,7 +45,6 @@ namespace JabuticabaTests
 
                 // Act
                 Cnpj cnpj = faker.Company.Cnpj(includeFormatSymbols: false);
-                cnpj.Validar();
 
                 // Assert
                 cnpj.EValido.Should().BeTrue();
@@ -59,7 +57,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoCnpjContarValorNaoNumerico()
         {
             Cnpj cnpj = "2.055.097/0001-6a";
-            cnpj.Validar();
 
             cnpj.EValido.Should().BeFalse();
             cnpj.Erro.Should()
@@ -70,7 +67,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuanCnpjForMenorDoQue14Digitos()
         {
             Cnpj cnpj = "02.055.097/0001-6";
-            cnpj.Validar();
 
             cnpj.EValido.Should().BeFalse();
             cnpj.Erro.Should()
@@ -81,7 +77,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuanCnpjForMaiorDoQue14Digitos()
         {
             Cnpj cnpj = "02.055.097/0001-656";
-            cnpj.Validar();
 
             cnpj.EValido.Should().BeFalse();
             cnpj.Erro.Should()
@@ -93,7 +88,6 @@ namespace JabuticabaTests
         {
 
             Cnpj cnpj = "02.055.097/0001-05";
-            cnpj.Validar();
 
             cnpj.EValido.Should().BeFalse();
              cnpj.Erro.Should()
@@ -104,7 +98,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoSegundoDigitoEhInvalido()
         {
             Cnpj cnpj = "02.055.097/0001-60";
-            cnpj.Validar();
 
             cnpj.EValido.Should().BeFalse();
             cnpj.Erro.Should()
