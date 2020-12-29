@@ -7,6 +7,15 @@ namespace JabuticabaTests
     public class TelefoneTeste
     {
         [Theory]
+        [InlineData("telefone")]
+        [InlineData("123abc")]
+        public void DeveRetornarInvalidoQuandoNaoEhUmTelefone(string ntel)
+        {
+            Telefone telefone = ntel;
+            telefone.EValido.Should().BeFalse();
+        }
+
+        [Theory]
         [InlineData("0533931020")] // ddd < 11
         [InlineData("5033331020")] // multiplo de 10
         [InlineData("5633331020")]
@@ -22,6 +31,7 @@ namespace JabuticabaTests
         [InlineData("7633331020")]
         [InlineData("7833331020")]
         [InlineData("5578994940001")]
+        [InlineData("+55 (10) 7500-0001")]
         public void DeveRetornarDDDInvalido(string sTelefone)
         {
             Telefone telefone = sTelefone;
@@ -62,18 +72,28 @@ namespace JabuticabaTests
         [Theory]
         [InlineData("55 (31) 6 3393-0001")]
         [InlineData("(31) 6 3393-0001")]
-        public void DeveSerInvalidoQuandoNaoConterNonoDigitoValido(string tel)
+        public void DeveSerInvalidoQuandoNaoConterNonoDigitoinvalido(string tel)
         {
             Telefone telefone = tel;
             telefone.EValido.Should().BeFalse();
         }
 
         [Theory]
+        [InlineData("+55 (31) 7500-0001")]
+        public void DeveSerValidoQuandoNaoContiverNonoDigito(string tel)
+        {
+            Telefone telefone = tel;
+            telefone.EValido.Should().BeTrue();
+        }
+
+        [Theory]
         [InlineData("190")]
+        [InlineData("181")]
         public void DeveSerValidoQuandoForServicoPublicoDeEmergencia(string tel)
         {
             Telefone telefone = tel;
             telefone.EValido.Should().BeTrue();
+            telefone.EServicoPublicoDeEmergencia.Should().BeTrue();
         }
 
         [Theory]
@@ -82,6 +102,7 @@ namespace JabuticabaTests
         {
             Telefone telefone = tel;
             telefone.EValido.Should().BeFalse();
+            telefone.EServicoPublicoDeEmergencia.Should().BeFalse();
         }
     }
 }
