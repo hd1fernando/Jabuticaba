@@ -28,6 +28,7 @@ namespace Jabuticaba.Telefones
             {
                 DDDValido = false;
                 EValido = true;
+                EServicoPublicoDeEmergencia = true;
                 return;
             }
 
@@ -47,19 +48,33 @@ namespace Jabuticaba.Telefones
             }
         }
 
-        public bool EhServicoPublicoDeEmergencia()
+        private bool EhServicoPublicoDeEmergencia()
         {
             Span<char> telefone = stackalloc char[3];
             for (int i = 0; i < _telefone.Length; i++)
                 telefone[i] = _telefone[i];
 
-
-            foreach (int valor in Enum.GetValues(typeof(ServicosPublicosEmergencia)))
+            return (ServicosPublicosEmergencia)int.Parse(telefone) switch
             {
-                if (valor.Equals(int.Parse(telefone)))
-                    return true;
-            }
-            return false;
+                ServicosPublicosEmergencia.SecretariaDosDireitosHumanos
+                or ServicosPublicosEmergencia.ServicoDeEmergenciaDoMercosul
+                or ServicosPublicosEmergencia.Procon
+                or ServicosPublicosEmergencia.Ibama
+                or ServicosPublicosEmergencia.GuardaMunicipal
+                or ServicosPublicosEmergencia.CentralDeAtendimentoAMulher
+                or ServicosPublicosEmergencia.DisqueDenuncia
+                or ServicosPublicosEmergencia.CentroDeValorizacaoAVida
+                or ServicosPublicosEmergencia.PoliciaMilitar
+                or ServicosPublicosEmergencia.PoliciaRodoviariaFederal
+                or ServicosPublicosEmergencia.SAMU
+                or ServicosPublicosEmergencia.CorpoDeBombeiros
+                or ServicosPublicosEmergencia.PoliciaFederal
+                or ServicosPublicosEmergencia.PoliciaCivil
+                or ServicosPublicosEmergencia.PoliciaRodoviariaEstadual
+                or ServicosPublicosEmergencia.DefesaCivil
+                => true,
+                _ => false
+            };
         }
 
         private bool FormatoValido(Span<char> telefone, Span<char> semMascara)
