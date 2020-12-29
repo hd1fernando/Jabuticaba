@@ -67,5 +67,21 @@ namespace JabuticabaTests
             Telefone telefone = tel;
             telefone.EValido.Should().BeFalse();
         }
+
+        [Theory]
+        [InlineData("190")]
+        public void DeveSerValidoQuandoForServicoPublicoDeEmergencia(string tel)
+        {
+            Telefone telefone = tel;
+            telefone.EValido.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("666")]
+        public void DeveSerInvalidoQuandoNaoForServicoPublicoDeEmergencia(string tel)
+        {
+            Telefone telefone = tel;
+            telefone.EValido.Should().BeFalse();
+        }
     }
 }
