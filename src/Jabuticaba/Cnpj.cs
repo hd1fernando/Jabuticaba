@@ -14,6 +14,7 @@ namespace Jabuticaba
             Erro = null;
             _cnpj = cnpj;
             EValido = true;
+            Validar();
         }
 
         public static implicit operator Cnpj(string cnpj)
@@ -22,7 +23,7 @@ namespace Jabuticaba
         public override string ToString()
             => _cnpj;
 
-        public void Validar()
+        private void Validar()
         {
             Span<int> stackCnpj = stackalloc int[14];
 

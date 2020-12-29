@@ -25,8 +25,6 @@ namespace JabuticabaTests
                 // Act
                 Cpf cpf = faker.Person.Cpf();
 
-                cpf.Validar();
-
                 // Assert
                 cpf.EValido.Should().BeTrue();
                 cpf.Erro.Should().BeNull();
@@ -38,7 +36,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoPrimeiroDigitoEhInvalido()
         {
             Cpf cpf = "149.764.610-00";
-            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
@@ -49,7 +46,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoSegundoDigitoEhInvalido()
         {
             Cpf cpf = "529.982.247-20";
-            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
@@ -65,7 +61,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoCpfContemApenasDigitosRepetidos(string cpfRepetido)
         {
             Cpf cpf = cpfRepetido;
-            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
@@ -77,7 +72,6 @@ namespace JabuticabaTests
         {
 
             Cpf cpf = "149.764.610-331";
-            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
@@ -89,8 +83,6 @@ namespace JabuticabaTests
         {
             Cpf cpf = "149.764.610";
 
-            cpf.Validar();
-
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
                 .BeEquivalentTo("O cpf deve ter 11 dígitos. 9 dígitos foram informados");
@@ -100,7 +92,6 @@ namespace JabuticabaTests
         public void DeveSerInvalidoQuandoCpfConterValorNaoNumerico()
         {
             Cpf cpf = "149.764.610a";
-            cpf.Validar();
 
             cpf.EValido.Should().BeFalse();
             cpf.Erro.Should()
