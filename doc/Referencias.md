@@ -30,3 +30,11 @@
 [Regra de validação para CPF e CNPJ](https://souforce.cloud/regra-de-validacao-para-cpf-e-cnpj/)
 
 [Correios - Estrutura do CEP](https://www.correios.com.br/enviar-e-receber/ferramentas/cep/estrutura-do-cep)
+
+[Anatel - Plano de Numeração Brasileiro ](https://antigo.anatel.gov.br/setorregulado/index.php?option=com_content&view=article&id=321&Itemid=409)
+
+[Wikipédia - Números de telefone no Brasil](https://pt.wikipedia.org/wiki/Números_de_telefone_no_Brasil#cite_note-1)
+
+[Sintegra - Conferência de Inscrições Estaduais](http://www.sintegra.gov.br/insc_est.html)
+
+[Nono Digíto](https://www.anatel.gov.br/Portal/exibirPortalPaginaEspecial.do?org.apache.struts.taglib.html.TOKEN=48dc3a3bd3119ef7e5df8378b483eb9e&acao=carregaPasta&codItemCanal=1746&pastaSelecionada=2862)

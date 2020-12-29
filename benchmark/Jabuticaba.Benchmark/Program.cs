@@ -10,14 +10,16 @@ namespace Jabuticaba.Benchmark
 #if RELEASE
             // var summaryCpf = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
             // var summaryCnpj = BenchmarkRunner.Run<CnpjBenchmarkDiagnoser>();
-            var summaryCnpj = BenchmarkRunner.Run<CepBenchmarkDiagnoser>();
+             var summaryCep = BenchmarkRunner.Run<CepBenchmarkDiagnoser>();
+            // var summarytelefone = BenchmarkRunner.Run<TelefoneBenchmarkDiagnoser>();
 #endif
 
             List<IBenchmarkLocal> benchmarks = new()
             {
                 new CnpjBenchmark(),
                 new CpfBenchmark(),
-                new CepBenchmark()
+                new CepBenchmark(),
+                new TelefoneBenchmark()
             };
 
             benchmarks.ForEach(

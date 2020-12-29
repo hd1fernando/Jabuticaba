@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>jabuticaba</PackageId>
     <Version>0.2.0</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+   <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
     <Authors>hd1Fernando</Authors>
   </PropertyGroup>
 
