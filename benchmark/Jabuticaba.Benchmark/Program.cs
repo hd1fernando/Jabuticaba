@@ -17,7 +17,8 @@ namespace Jabuticaba.Benchmark
             {
                 new CnpjBenchmark(),
                 new CpfBenchmark(),
-                new CepBenchmark()
+                new CepBenchmark(),
+                new TelefoneBenchmark()
             };
 
             benchmarks.ForEach(
