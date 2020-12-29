@@ -8,9 +8,10 @@ namespace Jabuticaba.Benchmark
         static void Main(string[] args)
         {
 #if RELEASE
-            // var summaryCpf = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
-            // var summaryCnpj = BenchmarkRunner.Run<CnpjBenchmarkDiagnoser>();
-            var summaryCnpj = BenchmarkRunner.Run<CepBenchmarkDiagnoser>();
+            var summaryCpf = BenchmarkRunner.Run<CpfBenchmarkDiagnoser>();
+            var summaryCnpj = BenchmarkRunner.Run<CnpjBenchmarkDiagnoser>();
+            var summaryCep = BenchmarkRunner.Run<CepBenchmarkDiagnoser>();
+            var summarytelefone = BenchmarkRunner.Run<TelefoneBenchmarkDiagnoser>();
 #endif
 
             List<IBenchmarkLocal> benchmarks = new()

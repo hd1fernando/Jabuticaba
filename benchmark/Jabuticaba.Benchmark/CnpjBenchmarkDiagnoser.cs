@@ -3,6 +3,7 @@ using BenchmarkDotNet.Order;
 
 namespace Jabuticaba.Benchmark
 {
+
     [RankColumn]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [MemoryDiagnoser]
