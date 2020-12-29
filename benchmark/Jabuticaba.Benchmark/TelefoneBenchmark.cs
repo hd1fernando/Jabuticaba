@@ -17,7 +17,7 @@ namespace Jabuticaba.Benchmark
             for (ulong i = 0; i < numeroTentativas; i++)
             {
 
-                Telefone telefone = "1033931020";
+                Telefone telefone = "+55 (31) 9 7500-0001";
             }
             stopWatch.Stop();
 
