@@ -36,3 +36,5 @@
 [Wikipédia - Números de telefone no Brasil](https://pt.wikipedia.org/wiki/Números_de_telefone_no_Brasil#cite_note-1)
 
 [Sintegra - Conferência de Inscrições Estaduais](http://www.sintegra.gov.br/insc_est.html)
+
+[Nono Digíto](https://www.anatel.gov.br/Portal/exibirPortalPaginaEspecial.do?org.apache.struts.taglib.html.TOKEN=48dc3a3bd3119ef7e5df8378b483eb9e&acao=carregaPasta&codItemCanal=1746&pastaSelecionada=2862)
