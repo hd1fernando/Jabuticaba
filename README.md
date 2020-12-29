@@ -23,13 +23,18 @@ Requerimento mínimo: **.Net 5.0**.
 
 ## Exemplo
 
+#### `Cnpj`
 ```C#
 Cnpj cnpj = "02.055.097/0001-65";
+Console.WriteLine(cnpj.EValido);
+// true
 ```
 
 ## Tipos já implementados
  * CPF
  * CNPJ
+ * CEP
+ * Telefone
  
 ## Benchmark
 ``` bash
