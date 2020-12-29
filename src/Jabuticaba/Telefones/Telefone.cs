@@ -22,11 +22,16 @@ namespace Jabuticaba.Telefones
             => _telefone;
         private void Validar()
         {
+
             Span<char> telefone = stackalloc char[_telefone.Length];
+            Span<char> telefoneSemMascara = stackalloc char[13];
+
             for (int i = 0; i < telefone.Length; i++)
                 telefone[i] = _telefone[i];
 
-            if (EDDValido(telefone) == false)
+            if (FormatoValido(telefone, telefoneSemMascara) == false
+                || EhDDDValido(telefoneSemMascara) == false
+                || ValidarNonoDigito(telefoneSemMascara) == false)
             {
                 DDDValido = false;
                 EValido = false;
@@ -34,9 +39,63 @@ namespace Jabuticaba.Telefones
             }
         }
 
-        private bool EDDValido(Span<char> telefone)
+
+
+        private bool FormatoValido(Span<char> telefone, Span<char> semMascara)
         {
-            int ddd = int.Parse(telefone[0..2]);
+            if (telefone[0] == '+' && int.Parse(telefone[1..3]) != 55)
+                return false;
+
+            int tamanho = telefone.Length;
+            int contadorSemMascara = 0;
+            for (int i = 0; i < telefone.Length; i++)
+            {
+                if (char.IsDigit(telefone[i]) == false)
+                {
+                    tamanho--;
+                    continue;
+                }
+                if (contadorSemMascara < semMascara.Length)
+                    semMascara[contadorSemMascara++] = telefone[i];
+            }
+
+            if (tamanho > 17 || tamanho < 10)
+                return false;
+
+            if (tamanho < semMascara.Length)
+                semMascara[tamanho + 1] = '\0';
+
+            return true;
+        }
+
+        private bool SomenteDigito(Span<char> span)
+        {
+            foreach (char c in span)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+            return true;
+        }
+
+        private bool ValidarNonoDigito(Span<char> telefone)
+        {
+            int tamanhoTelefone = telefone.IndexOf('\0');
+
+            if (tamanhoTelefone == -1)
+                return telefone[4] == '9';
+            if (tamanhoTelefone == 11)
+                return telefone[2] == '9';
+            return true;
+        }
+
+        private bool EhDDDValido(Span<char> telefone)
+        {
+            int tamanhoTelefone = telefone.IndexOf('\0');
+            int ddd = tamanhoTelefone <= 11 && tamanhoTelefone > 0
+                ? int.Parse(telefone[0..2])
+                : NaoCapturarDDI(telefone);
+
             if (ddd % 10 == 0)
                 return false;
 
@@ -49,5 +108,8 @@ namespace Jabuticaba.Telefones
                 _ => true
             };
         }
+
+        private int NaoCapturarDDI(Span<char> telefone)
+            => int.Parse(telefone[2..4]);
     }
 }
