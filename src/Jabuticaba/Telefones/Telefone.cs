@@ -7,11 +7,13 @@ namespace Jabuticaba.Telefones
         private readonly string _telefone;
         public bool EValido;
         public bool DDDValido;
+        public bool EServicoPublicoDeEmergencia;
         private Telefone(string telefone)
         {
             _telefone = telefone;
             EValido = true;
             DDDValido = true;
+            EServicoPublicoDeEmergencia = false;
             Validar();
         }
 
@@ -22,6 +24,12 @@ namespace Jabuticaba.Telefones
             => _telefone;
         private void Validar()
         {
+            if (_telefone.Length == 3 && EhServicoPublicoDeEmergencia())
+            {
+                DDDValido = false;
+                EValido = true;
+                return;
+            }
 
             Span<char> telefone = stackalloc char[_telefone.Length];
             Span<char> telefoneSemMascara = stackalloc char[13];
@@ -39,7 +47,20 @@ namespace Jabuticaba.Telefones
             }
         }
 
+        public bool EhServicoPublicoDeEmergencia()
+        {
+            Span<char> telefone = stackalloc char[3];
+            for (int i = 0; i < _telefone.Length; i++)
+                telefone[i] = _telefone[i];
 
+
+            foreach (int valor in Enum.GetValues(typeof(ServicosPublicosEmergencia)))
+            {
+                if (valor.Equals(int.Parse(telefone)))
+                    return true;
+            }
+            return false;
+        }
 
         private bool FormatoValido(Span<char> telefone, Span<char> semMascara)
         {
