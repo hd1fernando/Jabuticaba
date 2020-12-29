@@ -3,9 +3,22 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>jabuticaba</PackageId>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
    <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
     <Authors>hd1Fernando</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Jabuticaba é uma biblioteca que fornece, em formato de tipo, valores utilizados no Brasil. Como CPF, RG, CEP dentre outros.
+
+Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação além de buscar por alta performance.</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>2020</Copyright>
+    <RepositoryUrl>https://github.com/hd1fernando/Jabuticaba</RepositoryUrl>
+    <PackageTags>cep cnpj-validador cnpj cpf cpf-validador brazilian-helpers telefone brazilian-validators validator</PackageTags>
+    <PackageReleaseNotes>Ajuste nos tipos Cpf e Cnpj:
+  Remoção do lançamento de exceção.
+Adição dos tipos:
+  Cep e Telefone</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
