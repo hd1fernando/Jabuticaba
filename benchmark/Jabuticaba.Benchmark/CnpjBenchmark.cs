@@ -26,7 +26,6 @@ namespace Jabuticaba.Benchmark
             for (ulong i = 0; i < numeroTentativas; i++)
             {
                 Cnpj cnpj = "02.055.097/0001-65";
-                cnpj.Validar();
             }
             stopWatch.Stop();
 

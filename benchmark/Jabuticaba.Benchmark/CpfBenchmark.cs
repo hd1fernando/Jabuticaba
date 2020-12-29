@@ -27,7 +27,6 @@ namespace Jabuticaba.Benchmark
             {
 
                     Cpf cpf = "529.982.247-25";
-                    cpf.Validar();
             }
             stopWatch.Stop();
 
