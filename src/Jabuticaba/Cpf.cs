@@ -16,6 +16,7 @@ namespace Jabuticaba
             Erro = null;
             _cpf = cpf;
             EValido = true;
+            Validar();
         }
 
         public static implicit operator Cpf(string cpf)
@@ -24,7 +25,7 @@ namespace Jabuticaba
         public override string ToString()
             => _cpf;
 
-        public void Validar()
+        private void Validar()
         {
             Span<int> stackCpf = stackalloc int[11];
 
