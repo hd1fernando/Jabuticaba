@@ -6,7 +6,7 @@
 
 # Sobre o projeto
 
-**Jabuticaba** é uma biblioteca que busca fornecer como tipo valores utilizados em aplicações que lidam com dados de usuários (ex: **CPF**, **CNPJ**, **RG**, ...).
+**Jabuticaba** é uma biblioteca que busca fornecer como tipo valores utilizados no Brasil. (ex: **CPF**, **CNPJ**, **RG**, ...).
 
 Seu principal objeto é evitar que o desenvolvedor necessite recriar novos tipos para novos projetos além de ter foco em desempenho e baixa alocação de memória.
 
