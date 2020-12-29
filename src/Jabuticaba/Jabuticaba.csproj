@@ -4,10 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>jabuticaba</PackageId>
     <Version>0.3.0</Version>
-   <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
     <Authors>hd1Fernando</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Jabuticaba é uma biblioteca que fornece, em formato de tipo, valores utilizados no Brasil. Como CPF, RG, CEP dentre outros.
+    <Description>Jabuticaba é uma biblioteca que fornece, em formato de tipos, valores utilizados no Brasil. Como CPF, RG, CEP dentre outros.
 
 Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação além de buscar por alta performance.</Description>
     <PackageProjectUrl></PackageProjectUrl>
