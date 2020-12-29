@@ -98,9 +98,6 @@ namespace Jabuticaba.Telefones
             if (tamanho > 17 || tamanho < 10)
                 return false;
 
-            if (tamanho < semMascara.Length)
-                semMascara[tamanho + 1] = '\0';
-
             return true;
         }
 
