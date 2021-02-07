@@ -11,7 +11,7 @@
 Seu principal objeto é evitar que o desenvolvedor necessite recriar novos tipos para novos projetos além de ter foco em desempenho e baixa alocação de memória.
 
 ## Download e instalação
-Use o gerenciador de pacotes **Nuget [jabuticaba](https://www.nuget.org/packages/jabuticaba/)** para realizar a instalação.
+Use o gerenciador de pacotes **[Nuget](https://www.nuget.org/packages/jabuticaba/)** para realizar a instalação.
 
 ```powershell
 Install-Package jabuticaba
@@ -104,7 +104,7 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 
 * [Semantic Versioning](https://semver.org/) para versionamento de versões.
 
-## Bibliotecas utlizadas
+## Bibliotecas utilizadas
 - [XUnit](https://xunit.net/) para criação de testes de automatizado.
 
 - [Fluent Assertions](https://fluentassertions.com/) para realizar assert nos testes automatizados.
