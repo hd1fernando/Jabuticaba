@@ -122,4 +122,4 @@ Criado por Fernando Gonçalves
 
 # Referências:
 
-Todas as fontes utilizadas até o momento estão disponíveis [aqui](https://github.com/hd1fernando/Jabuticaba/blob/feature/organizacaoProjeto/doc/Referencias.md).
+Todas as fontes utilizadas até o momento estão disponíveis [aqui](https://github.com/hd1fernando/Jabuticaba/blob/main/doc/Referencias.md).
