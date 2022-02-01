@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>jabuticaba</PackageId>
     <Version>0.3.0</Version>
     <Authors>hd1Fernando</Authors>
