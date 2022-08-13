@@ -33,7 +33,6 @@ Console.WriteLine(cnpj.EValido);
 ## Tipos já implementados
  * CPF
  * CNPJ
- * CEP
  * Telefone
  
 ## Benchmark
@@ -65,15 +64,6 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 |    CnpjMaiorDoQue14Digitos | 259.65 ns | 4.840 ns | 4.753 ns |    5 | 0.0763 |     - |     - |     160 B |
 |    CnpjMenorDoQue14Digitos | 265.31 ns | 5.343 ns | 7.132 ns |    5 | 0.0763 |     - |     - |     160 B |
 |       CnpjValorNaoNumerico | 436.29 ns | 6.250 ns | 5.846 ns |    6 | 0.1526 |     - |     - |     320 B |
-
-|                   Method |      Mean |     Error |    StdDev | Rank | Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------- |----------:|----------:|----------:|-----:|------:|------:|------:|----------:|
-|                 CepMaior |  2.489 ns | 0.0308 ns | 0.0257 ns |    1 |     - |     - |     - |         - |
-| CepSemIfenNaSextaPosicao |  3.030 ns | 0.0297 ns | 0.0278 ns |    2 |     - |     - |     - |         - |
-|            CepSemNumeros |  7.735 ns | 0.1570 ns | 0.1542 ns |    3 |     - |     - |     - |         - |
-|                 CepMenor |  9.955 ns | 0.1558 ns | 0.1457 ns |    4 |     - |     - |     - |         - |
-|                  OberCep | 10.835 ns | 0.1485 ns | 0.1389 ns |    5 |     - |     - |     - |         - |
-|      OberCepSemPontuacao | 11.632 ns | 0.1208 ns | 0.1130 ns |    6 |     - |     - |     - |         - |
 
 |                              Method |      Mean |    Error |    StdDev | Rank | Gen 0 | Gen 1 | Gen 2 | Allocated |
 |------------------------------------ |----------:|---------:|----------:|-----:|------:|------:|------:|----------:|
