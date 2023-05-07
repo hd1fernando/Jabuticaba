@@ -29,11 +29,6 @@ Cnpj cnpj = "02.055.097/0001-65";
 Console.WriteLine(cnpj.EValido);
 // true
 ```
-
-## Tipos já implementados
- * CPF
- * CNPJ
- * Telefone
  
 ## Benchmark
 ``` bash
@@ -64,17 +59,6 @@ AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cor
 |    CnpjMaiorDoQue14Digitos | 259.65 ns | 4.840 ns | 4.753 ns |    5 | 0.0763 |     - |     - |     160 B |
 |    CnpjMenorDoQue14Digitos | 265.31 ns | 5.343 ns | 7.132 ns |    5 | 0.0763 |     - |     - |     160 B |
 |       CnpjValorNaoNumerico | 436.29 ns | 6.250 ns | 5.846 ns |    6 | 0.1526 |     - |     - |     320 B |
-
-|                              Method |      Mean |    Error |    StdDev | Rank | Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------------------ |----------:|---------:|----------:|-----:|------:|------:|------:|----------:|
-|               NaoEhUmTelefoneValido |  20.48 ns | 0.413 ns |  0.386 ns |    1 |     - |     - |     - |         - |
-|   ObterTelefoneServicoPublicoValido |  33.18 ns | 0.687 ns |  0.609 ns |    2 |     - |     - |     - |         - |
-| ObterTelefoneServicoPublicoInvalido |  48.77 ns | 0.717 ns |  0.636 ns |    3 |     - |     - |     - |         - |
-|            ObterTelefoneDDDInvalido |  82.00 ns | 1.186 ns |  1.109 ns |    4 |     - |     - |     - |         - |
-|                 ObterTelefoneSemDDI |  96.33 ns | 1.874 ns |  1.661 ns |    5 |     - |     - |     - |         - |
-|          ObterTelefoneSemNonoDigito | 121.86 ns | 2.479 ns |  3.710 ns |    6 |     - |     - |     - |         - |
-|               ObterTelefoneCompleto | 137.91 ns | 3.916 ns | 11.361 ns |    7 |     - |     - |     - |         - |
-
 
 // * Legends *
   Mean      : Arithmetic mean of all measurements
