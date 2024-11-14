@@ -97,5 +97,15 @@ namespace JabuticabaTests
             cpf.Erro.Should()
                 .BeEquivalentTo("Um CPF deve conter apenas números. O valor 'a' foi encontrado na posição '12'. Cpf informado: 149.764.610a");
         }
+
+        [Fact]
+        public void DeveSerInvalidoQuandoCpfENull()
+        {
+            Cpf cpf = null;
+
+            cpf.EValido.Should().BeFalse();
+            cpf.Erro.Should()
+                .BeEquivalentTo("O CPF não pode ser nulo");
+        }
     }
 }
