@@ -27,6 +27,9 @@ namespace Jabuticaba
         {
             Span<int> stackCnpj = stackalloc int[14];
 
+            ValidarSeNulo();
+            if (EValido == false) return;
+
             ValidarSeSomentDigito();
             if (EValido == false) return;
 
@@ -42,6 +45,15 @@ namespace Jabuticaba
             ValidarSegundoDigito(stackCnpj);
             if (EValido == false) return;
 
+        }
+
+        private void ValidarSeNulo()
+        {
+            if (_cnpj is null)
+            {
+                EValido = false;
+                Erro = "O CNPJ não pode ser nulo.";
+            }
         }
 
         private void ValidarSeSomentDigito()

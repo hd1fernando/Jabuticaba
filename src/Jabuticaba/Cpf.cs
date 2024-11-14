@@ -29,6 +29,9 @@ namespace Jabuticaba
         {
             Span<int> stackCpf = stackalloc int[11];
 
+            ValidarSeNulo();
+            if(EValido == false) return;
+
             ValidarSeSomenteDigito();
             if (EValido == false) return;
 
