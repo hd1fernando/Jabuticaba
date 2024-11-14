@@ -31,46 +31,8 @@ Console.WriteLine(cnpj.EValido);
 ```
  
 ## Benchmark
-``` bash
-// * Legends *
-BenchmarkDotNet=v0.12.1, OS=ubuntu 20.04
-AMD Ryzen 5 3400G with Radeon Vega Graphics, 1 CPU, 8 logical and 4 physical cores
-.NET Core SDK=5.0.101
-  [Host]     : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
-  DefaultJob : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+Clique [aqui](https://github.com/hd1fernando/Jabuticaba/blob/main/benchmark/DiagnoseResult.md) para ver o último resultado do teste de benchmark
 
-
-|                        Method |      Mean |    Error |    StdDev |    Median | Rank |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------------ |----------:|---------:|----------:|----------:|-----:|-------:|------:|------:|----------:|
-|                      ObterCpf |  55.70 ns | 1.092 ns |  1.022 ns |  55.60 ns |    1 |      - |     - |     - |         - |
-|     CpfApenasDigitosRepetidos |  62.27 ns | 1.254 ns |  1.444 ns |  62.13 ns |    2 |      - |     - |     - |         - |
-|     CpfPrimeiroDigitoInvalido |  99.88 ns | 4.280 ns | 12.620 ns |  94.13 ns |    3 | 0.0421 |     - |     - |      88 B |
-|      CpfSegundoDigitoInvalido | 107.18 ns | 2.146 ns |  3.146 ns | 106.61 ns |    4 | 0.0421 |     - |     - |      88 B |
-| CpfTamanhoMenorDoQue11Digitos | 240.83 ns | 3.868 ns |  4.299 ns | 240.59 ns |    5 | 0.0725 |     - |     - |     152 B |
-| CpfTamanhoMaiorDoQue11Digitos | 255.29 ns | 4.031 ns |  3.573 ns | 255.30 ns |    6 | 0.0763 |     - |     - |     160 B |
-|   CpfContendoValorNaoNumerico | 427.66 ns | 8.255 ns |  8.108 ns | 428.53 ns |    7 | 0.1488 |     - |     - |     312 B |
-
-|                     Method |      Mean |    Error |   StdDev | Rank |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------------------------- |----------:|---------:|---------:|-----:|-------:|------:|------:|----------:|
-|             CnpjSemMascara |  67.85 ns | 0.416 ns | 0.389 ns |    1 |      - |     - |     - |         - |
-|                  ObterCnpj |  75.87 ns | 0.758 ns | 0.672 ns |    2 |      - |     - |     - |         - |
-|  CnpjSegundoDigitoInvalido | 101.82 ns | 2.066 ns | 3.337 ns |    3 | 0.0459 |     - |     - |      96 B |
-| CnpjPrimeiroDigitoInvalido | 112.16 ns | 2.267 ns | 2.699 ns |    4 | 0.0459 |     - |     - |      96 B |
-|    CnpjMaiorDoQue14Digitos | 259.65 ns | 4.840 ns | 4.753 ns |    5 | 0.0763 |     - |     - |     160 B |
-|    CnpjMenorDoQue14Digitos | 265.31 ns | 5.343 ns | 7.132 ns |    5 | 0.0763 |     - |     - |     160 B |
-|       CnpjValorNaoNumerico | 436.29 ns | 6.250 ns | 5.846 ns |    6 | 0.1526 |     - |     - |     320 B |
-
-// * Legends *
-  Mean      : Arithmetic mean of all measurements
-  Error     : Half of 99.9% confidence interval
-  StdDev    : Standard deviation of all measurements
-  Ratio     : Mean of the ratio distribution ([Current]/[Baseline])
-  Gen 0     : GC Generation 0 collects per 1000 operations
-  Gen 1     : GC Generation 1 collects per 1000 operations
-  Gen 2     : GC Generation 2 collects per 1000 operations
-  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
-  1 ns      : 1 Nanosecond (0.000000001 sec)
-```
 ## Detalhes do projeto
 * [GitFlow](https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow) para fluxo de trabalho com Git.
 

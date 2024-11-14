@@ -14,6 +14,14 @@ namespace Jabuticaba.Benchmark
         GC geração 1 - 0
         GC geração 0 - 0
         12/26/2020 9:17:20 AM
+
+        Cnpj:
+        Quantidade de cnpjs 1000000
+        Tempo execução: 182ms
+        GC geração 2 - 0
+        GC geração 1 - 0
+        GC geração 0 - 0
+        14/11/2024 19:49:49
         */
         public void Executar(ulong numeroTentativas)
         {

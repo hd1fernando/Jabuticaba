@@ -3,11 +3,11 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<PackageId>jabuticaba</PackageId>
-		<Version>1.0.0</Version>
+		<Version>2.0.0</Version>
 		<Authors>hd1Fernando</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>
-			Jabuticaba é uma biblioteca que fornece, em formato de tipos, valores utilizados no Brasil. Como CPF, CNPJ e etc.
+			Jabuticaba é uma biblioteca que fornece, em formato de tipos, valores utilizados no Brasil. Como CPF e CNPJ.
 
 			Seu principal objetivo que que o desenvolvedor não tenha necessidade de ficar recriando tipos quando for preciso lidar com um novo tipo em sua aplicação além de buscar por alta performance.
 		</Description>
@@ -15,11 +15,9 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>2022</Copyright>
 		<RepositoryUrl>https://github.com/hd1fernando/Jabuticaba</RepositoryUrl>
-		<PackageTags>cnpj-validador cnpj cpf cpf-validador brazilian-helpers telefone brazilian-validators validator</PackageTags>
+		<PackageTags>cnpj-validador cnpj cpf cpf-validador brazilian-helpersbrazilian-validators validator</PackageTags>
 		<PackageReleaseNotes>
-			- Remoção do tipo:
-			Cep
-			- Upgrade de versão do .net para .net 6
+			- Remoção de todos os tipos que não são CPF ou CNPJ.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

@@ -14,6 +14,14 @@ namespace Jabuticaba.Benchmark
         GC geração 1 - 0
         GC geração 0 - 0
         12/26/2020 7:49:36 AM
+
+        Cpf:
+        Quantidade de cpfs 1000000
+        Tempo execução: 94ms
+        GC geração 2 - 0
+        GC geração 1 - 0
+        GC geração 0 - 0
+        14/11/2024 19:49:49
         */
         public void Executar(ulong numeroTentativas)
         {
