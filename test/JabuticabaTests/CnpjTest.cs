@@ -90,8 +90,8 @@ namespace JabuticabaTests
             Cnpj cnpj = "02.055.097/0001-05";
 
             cnpj.EValido.Should().BeFalse();
-             cnpj.Erro.Should()
-                .BeEquivalentTo("O CNPJ 02.055.097/0001-05 é inválido.");
+            cnpj.Erro.Should()
+               .BeEquivalentTo("O CNPJ 02.055.097/0001-05 é inválido.");
         }
 
         [Fact]
@@ -104,5 +104,14 @@ namespace JabuticabaTests
                 .BeEquivalentTo("O CNPJ 02.055.097/0001-60 é inválido.");
         }
 
+
+        [Fact]
+        public void DeveSerInvalidoQuandoCnpjEhNulo()
+        {
+            Cnpj cnpj = null;
+            cnpj.EValido.Should().BeFalse();
+            cnpj.Erro.Should()
+                .BeEquivalentTo("O CNPJ não pode ser nulo.");
+        }
     }
 }
