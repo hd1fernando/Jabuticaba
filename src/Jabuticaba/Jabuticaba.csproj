@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<PackageId>jabuticaba</PackageId>
-		<Version>2.0.0</Version>
+		<Version>3.0.0</Version>
 		<Authors>hd1Fernando</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>
@@ -17,6 +17,7 @@
 		<RepositoryUrl>https://github.com/hd1fernando/Jabuticaba</RepositoryUrl>
 		<PackageTags>cnpj-validador cnpj cpf cpf-validador brazilian-helpersbrazilian-validators validator</PackageTags>
 		<PackageReleaseNotes>
+			- Atualização do framework de destino para .NET 10.
 			- Remoção de todos os tipos que não são CPF ou CNPJ.
 		</PackageReleaseNotes>
 	</PropertyGroup>
