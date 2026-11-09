@@ -6,9 +6,9 @@
 
 # Sobre o projeto
 
-**Jabuticaba** é uma biblioteca que busca fornecer como tipo valores utilizados no Brasil. (ex: **CPF**, **CNPJ**, **RG**, ...).
+**Jabuticaba** é uma biblioteca que fornece validação para os tipos CPF e CNPJ.
 
-Seu principal objeto é evitar que o desenvolvedor necessite recriar novos tipos para novos projetos além de ter foco em desempenho e baixa alocação de memória.
+Seu principal objetivo é evitar que o desenvolvedor necessite recriar novos tipos para novos projetos além de ter foco em desempenho e baixa alocação de memória.
 
 ## Download e instalação
 Use o gerenciador de pacotes **[Nuget](https://www.nuget.org/packages/jabuticaba/)** para realizar a instalação.

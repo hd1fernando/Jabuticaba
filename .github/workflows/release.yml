@@ -18,10 +18,11 @@ jobs:
       with:
         dotnet-version: '10.0.x'
     - name: Restore dependencies
-      run: dotnet restore src/Jabuticaba/
+      run: dotnet restore test/JabuticabaTests/
     - name: Build
-      run: dotnet build --no-restore src/Jabuticaba/
+      run: dotnet build --no-restore -c Release src/Jabuticaba/
     - name: Test
-      run: dotnet test --no-build --verbosity normal test/JabuticabaTests/
+      run: dotnet test --no-restore -c Release --verbosity normal test/JabuticabaTests/
     - name: Publish Nuget Package
-      run: dotnet nuget push  **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      if: github.event_name == 'push'
+      run: dotnet nuget push src/Jabuticaba/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
