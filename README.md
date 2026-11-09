@@ -19,7 +19,7 @@ Install-Package jabuticaba
 ```bash
 dotnet add package jabuticaba 
 ```
-Requerimento mínimo: **.Net 5.0**.
+Requerimento mínimo: **.NET 10.0**.
 
 ## Exemplo
 
